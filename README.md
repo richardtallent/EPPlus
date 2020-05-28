@@ -1,47 +1,15 @@
 # EPPlus
-**This repository has moved to https://github.com/EPPlusSoftware/EPPlus.** 
 
-**The code in this archive represents the final version of EPPlus under LGPL. There will be no more activity here.**  
+** EPPlus has moved from LGPL to another license, and is hosted at https://github.com/EPPlusSoftware/EPPlus.**
 
-EPPlus will from version 5 switch license from **LGPL** to [Polyform Noncommercial 1.0.0]( https://polyformproject.org/licenses/noncommercial/1.0.0/) license.  
-With the new license EPPlus is still free to use in some cases, but will require a commercial license to be used in a commercial business.
+** This is a fork of the last LGPL version, which I'm maintaining only for fixing bugs for my own use. **
 
-More information on the license change on [our website]( https://www.epplussoftware.com)
-***
-Create advanced Excel spreadsheets using .NET, without the need of interop.
+I will accept PRs that are easy to review and limited in scope, and that are also intended for bug fixes rather than new features.
 
-EPPlus is a .NET library that reads and writes Excel files using the Office Open XML format (xlsx). 
-EPPlus has no dependencies other than .NET.
- 
-## EPPlus supports:
-* Cell Ranges 
-* Cell styling (Border, Color, Fill, Font, Number, Alignments) 
-* Data validation 
-* Conditional formatting 
-* Charts 
-* Pictures 
-* Shapes 
-* Comments 
-* Tables 
-* Pivot tables 
-* Protection 
-* Encryption 
-* VBA 
-* Formula calculation 
-* Many more... 
+I won't be trying to maintain backward compatibility with the code style or functionality of EPPlus.
 
-## Overview
-This project started with the source from ExcelPackage. It was a great project to start from.
-It had the basic functionality needed to read and write a spreadsheet.
-Advantages over other:
-EPPlus uses dictionaries to access cell data, making performance a lot better.
-Complete integration with .NET 
-
-## Support
-All support is currently referred to [Stack overflow](https://stackoverflow.com/questions/tagged/epplus). 
-A tutorial is available in the wiki and the sample project can be downloaded with each version. 
-The old site at [Codeplex](http://epplus.codeplex.com) also contains material that can be helpful. 
-Bugs and new feature requests can be added to the issues tracker. 
+I'll come up with a new name when I have a chance so there's no potential for confusion.
 
 ## License
-The project is licensed under the GNU Library General Public License (LGPL). 
+
+The project is licensed under the GNU Library General Public License (LGPL).

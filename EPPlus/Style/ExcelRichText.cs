@@ -30,6 +30,7 @@
  * Jan Källman		License changed GPL-->LGPL 2011-12-16
  * Richard Tallent					Fix inadvertent removal of XML node					2012-10-31
  * Richard Tallent					Remove VertAlign node if no alignment specified		2012-10-31
+ * Richard Tallent					Remove VertAlign NODE not attribute                 2020-05-28
  *******************************************************************************/
 using System;
 using System.Collections.Generic;
@@ -245,7 +246,7 @@ namespace OfficeOpenXml.Style
 					// If Excel 2010 encounters a vertical align value of blank, it will not load
 					// the spreadsheet. So if None is specified, delete the node, it will be 
 					// recreated if a new value is applied later.
-					DeleteNode(VERT_ALIGN_PATH);
+					DeleteNode(VERT_ALIGN_PATH.Substring(0, VERT_ALIGN_PATH.LastIndexOf("/")));
 				} else {
 					SetXmlNodeString(VERT_ALIGN_PATH, value.ToString().ToLowerInvariant());
 				}

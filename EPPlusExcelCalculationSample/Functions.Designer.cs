@@ -2,6 +2,7 @@
 {
     partial class frmFunctions
     {
+
         /// <summary>
         /// Required designer variable.
         /// </summary>

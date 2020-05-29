@@ -27,6 +27,7 @@
 
 namespace OfficeOpenXml.Packaging.Ionic.Zip
 {
+
     /// <summary>
     /// An enum that provides the various encryption algorithms supported by this
     /// library.
@@ -101,6 +102,7 @@ namespace OfficeOpenXml.Packaging.Ionic.Zip
     /// </remarks>
     internal enum EncryptionAlgorithm
     {
+
         /// <summary>
         /// No encryption at all.
         /// </summary>
@@ -112,6 +114,7 @@ namespace OfficeOpenXml.Packaging.Ionic.Zip
         PkzipWeak,
 
 #if AESCRYPTO
+
         /// <summary>
         /// WinZip AES encryption (128 key bits).
         /// </summary>

@@ -29,39 +29,25 @@
  * Mats Alm   		                Added       		        2011-01-08
  * Jan Källman		    License changed GPL-->LGPL  2011-12-27
  *******************************************************************************/
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Xml;
 using OfficeOpenXml.DataValidation.Formulas.Contracts;
 using System.Globalization;
 
-namespace OfficeOpenXml.DataValidation.Formulas
-{
-    internal class ExcelDataValidationFormulaInt : ExcelDataValidationFormulaValue<int?>, IExcelDataValidationFormulaInt
-    {
-        public ExcelDataValidationFormulaInt(XmlNamespaceManager namespaceManager, XmlNode topNode, string formulaPath)
-            : base(namespaceManager, topNode, formulaPath)
-        {
-            var value = GetXmlNodeString(formulaPath);
-            if (!string.IsNullOrEmpty(value))
-            {
-                int intValue = default(int);
-                if (int.TryParse(value, NumberStyles.Number, CultureInfo.InvariantCulture, out intValue))
-                {
-                    Value = intValue;
-                }
-                else
-                {
-                    ExcelFormula = value;
-                }
-            }
-        }
+namespace OfficeOpenXml.DataValidation.Formulas {
+	internal class ExcelDataValidationFormulaInt : ExcelDataValidationFormulaValue<int?>, IExcelDataValidationFormulaInt {
+		public ExcelDataValidationFormulaInt(XmlNamespaceManager namespaceManager, XmlNode topNode, string formulaPath)
+			: base(namespaceManager, topNode, formulaPath) {
+			var value = GetXmlNodeString(formulaPath);
+			if (!string.IsNullOrEmpty(value)) {
+				var intValue = default(int);
+				if (int.TryParse(value, NumberStyles.Number, CultureInfo.InvariantCulture, out intValue)) {
+					Value = intValue;
+				} else {
+					ExcelFormula = value;
+				}
+			}
+		}
 
-        protected override string GetValueAsString()
-        {
-            return Value.HasValue ? Value.Value.ToString() : string.Empty;
-        }
-    }
+		protected override string GetValueAsString() => Value.HasValue ? Value.Value.ToString() : string.Empty;
+	}
 }

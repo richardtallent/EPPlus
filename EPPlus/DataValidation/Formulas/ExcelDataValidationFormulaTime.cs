@@ -30,59 +30,33 @@
  * Jan Källman		                License changed GPL-->LGPL  2011-12-27
  *******************************************************************************/
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using OfficeOpenXml.DataValidation.Formulas.Contracts;
-using OfficeOpenXml.DataValidation;
 using System.Xml;
 using System.Globalization;
 
-namespace OfficeOpenXml.DataValidation.Formulas
-{
-    internal class ExcelDataValidationFormulaTime : ExcelDataValidationFormulaValue<ExcelTime>, IExcelDataValidationFormulaTime
-    {
-        public ExcelDataValidationFormulaTime(XmlNamespaceManager namespaceManager, XmlNode topNode, string formulaPath)
-            : base(namespaceManager, topNode, formulaPath)
-        {
-            var value = GetXmlNodeString(formulaPath);
-            if (!string.IsNullOrEmpty(value))
-            {
-                decimal time = default(decimal);
-                if (decimal.TryParse(value, NumberStyles.Any, CultureInfo.InvariantCulture, out time))
-                {
-                    Value = new ExcelTime(time);
-                }
-                else
-                {
-                    Value = new ExcelTime();
-                    ExcelFormula = value;
-                }
-            }
-            else
-            {
-                Value = new ExcelTime();
-            }
-            Value.TimeChanged += new EventHandler(Value_TimeChanged);
-        }
+namespace OfficeOpenXml.DataValidation.Formulas {
+	internal class ExcelDataValidationFormulaTime : ExcelDataValidationFormulaValue<ExcelTime>, IExcelDataValidationFormulaTime {
+		public ExcelDataValidationFormulaTime(XmlNamespaceManager namespaceManager, XmlNode topNode, string formulaPath)
+			: base(namespaceManager, topNode, formulaPath) {
+			var value = GetXmlNodeString(formulaPath);
+			if (!string.IsNullOrEmpty(value)) {
+				var time = default(decimal);
+				if (decimal.TryParse(value, NumberStyles.Any, CultureInfo.InvariantCulture, out time)) {
+					Value = new ExcelTime(time);
+				} else {
+					Value = new ExcelTime();
+					ExcelFormula = value;
+				}
+			} else {
+				Value = new ExcelTime();
+			}
+			Value.TimeChanged += new EventHandler(Value_TimeChanged);
+		}
 
-        void Value_TimeChanged(object sender, EventArgs e)
-        {
-            SetXmlNodeString(FormulaPath, Value.ToExcelString());
-        }
+		void Value_TimeChanged(object sender, EventArgs e) => SetXmlNodeString(FormulaPath, Value.ToExcelString());
 
-        protected override string GetValueAsString()
-        {
-            if (State == FormulaState.Value)
-            {
-                return Value.ToExcelString();
-            }
-            return string.Empty;
-        }
+		protected override string GetValueAsString() => State == FormulaState.Value ? Value.ToExcelString() : string.Empty;
 
-        internal override void ResetValue()
-        {
-            Value = new ExcelTime();
-        }
-    }
+		internal override void ResetValue() => Value = new ExcelTime();
+	}
 }

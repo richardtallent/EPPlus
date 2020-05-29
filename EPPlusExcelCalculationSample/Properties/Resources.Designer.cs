@@ -12,6 +12,7 @@ namespace EPPlusExcelFormDemo.Properties {
     using System;
     
     
+
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -32,6 +33,7 @@ namespace EPPlusExcelFormDemo.Properties {
         internal Resources() {
         }
         
+
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
@@ -46,6 +48,7 @@ namespace EPPlusExcelFormDemo.Properties {
             }
         }
         
+
         /// <summary>
         ///   Overrides the current thread's CurrentUICulture property for all
         ///   resource lookups using this strongly typed resource class.

@@ -43,6 +43,7 @@ namespace OfficeOpenXml.Packaging.Ionic.Zip
     ///
     internal enum ExtractExistingFileAction
     {
+
         /// <summary>
         /// Throw an exception when extraction would overwrite an existing file. (For
         /// COM clients, this is a 0 (zero).)

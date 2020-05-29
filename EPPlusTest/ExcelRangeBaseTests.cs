@@ -76,7 +76,7 @@ namespace EPPlusTest
         [TestMethod]
         public void SettingAddressHandlesMultiAddresses()
         {
-            using (ExcelPackage package = new ExcelPackage())
+            using (var package = new ExcelPackage())
             {
                 var worksheet = package.Workbook.Worksheets.Add("Sheet1");
                 var name = package.Workbook.Names.Add("Test", worksheet.Cells[3, 3]);

@@ -14,7 +14,6 @@ namespace EPPlusTest.Properties {
     using System.IO;
     using System.Reflection;
 
-
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -35,6 +34,7 @@ namespace EPPlusTest.Properties {
         internal Resources() {
         }
         
+
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
@@ -55,6 +55,7 @@ namespace EPPlusTest.Properties {
             }
         }
         
+
         /// <summary>
         ///   Overrides the current thread's CurrentUICulture property for all
         ///   resource lookups using this strongly typed resource class.
@@ -69,6 +70,7 @@ namespace EPPlusTest.Properties {
             }
         }
         
+
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>

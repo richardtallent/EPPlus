@@ -29,30 +29,25 @@
  * Eyal Seagull    Conditional Formatting Adaption    2012-04-03
  *******************************************************************************/
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Xml;
 
-namespace OfficeOpenXml.ConditionalFormatting
-{
+namespace OfficeOpenXml.ConditionalFormatting {
+
 	/// <summary>
 	/// Functions related to the <see cref="ExcelConditionalFormattingColorScaleValue"/>
 	/// </summary>
-	internal static class ExcelConditionalFormattingValueObjectType
-	{
+	internal static class ExcelConditionalFormattingValueObjectType {
+
 		/// <summary>
 		/// Get the sequencial order of a cfvo/color by its position.
 		/// </summary>
 		/// <param name="position"></param>
-        /// <param name="ruleType"></param>
+		/// <param name="ruleType"></param>
 		/// <returns>1, 2 or 3</returns>
 		internal static int GetOrderByPosition(
 			eExcelConditionalFormattingValueObjectPosition position,
-			eExcelConditionalFormattingRuleType ruleType)
-		{
-			switch (position)
-			{
+			eExcelConditionalFormattingRuleType ruleType) {
+			switch (position) {
 				case eExcelConditionalFormattingValueObjectPosition.Low:
 					return 1;
 
@@ -61,8 +56,7 @@ namespace OfficeOpenXml.ConditionalFormatting
 
 				case eExcelConditionalFormattingValueObjectPosition.High:
 					// Check if the rule type is TwoColorScale.
-					if (ruleType == eExcelConditionalFormattingRuleType.TwoColorScale)
-					{
+					if (ruleType == eExcelConditionalFormattingRuleType.TwoColorScale) {
 						// There are only "Low" and "High". So "High" is the second
 						return 2;
 					}
@@ -80,31 +74,29 @@ namespace OfficeOpenXml.ConditionalFormatting
 		/// <param name="attribute"></param>
 		/// <returns></returns>
 		public static eExcelConditionalFormattingValueObjectType GetTypeByAttrbiute(
-			string attribute)
-		{
-			switch (attribute)
-			{
+			string attribute) {
+			switch (attribute) {
 				case ExcelConditionalFormattingConstants.CfvoType.Min:
 					return eExcelConditionalFormattingValueObjectType.Min;
 
-        case ExcelConditionalFormattingConstants.CfvoType.Max:
+				case ExcelConditionalFormattingConstants.CfvoType.Max:
 					return eExcelConditionalFormattingValueObjectType.Max;
 
-        case ExcelConditionalFormattingConstants.CfvoType.Num:
+				case ExcelConditionalFormattingConstants.CfvoType.Num:
 					return eExcelConditionalFormattingValueObjectType.Num;
 
-        case ExcelConditionalFormattingConstants.CfvoType.Formula:
+				case ExcelConditionalFormattingConstants.CfvoType.Formula:
 					return eExcelConditionalFormattingValueObjectType.Formula;
 
-        case ExcelConditionalFormattingConstants.CfvoType.Percent:
+				case ExcelConditionalFormattingConstants.CfvoType.Percent:
 					return eExcelConditionalFormattingValueObjectType.Percent;
 
-        case ExcelConditionalFormattingConstants.CfvoType.Percentile:
+				case ExcelConditionalFormattingConstants.CfvoType.Percentile:
 					return eExcelConditionalFormattingValueObjectType.Percentile;
 			}
 
 			throw new Exception(
-        ExcelConditionalFormattingConstants.Errors.UnexistentCfvoTypeAttribute);
+		ExcelConditionalFormattingConstants.Errors.UnexistentCfvoTypeAttribute);
 		}
 
 		/// <summary>
@@ -112,29 +104,27 @@ namespace OfficeOpenXml.ConditionalFormatting
 		/// </summary>
 		/// <param name="position"></param>
 		///<param name="ruleType"></param>
-        /// <param name="topNode"></param>
+		/// <param name="topNode"></param>
 		/// <param name="nameSpaceManager"></param>
 		/// <returns></returns>
 		public static XmlNode GetCfvoNodeByPosition(
 			eExcelConditionalFormattingValueObjectPosition position,
 			eExcelConditionalFormattingRuleType ruleType,
 			XmlNode topNode,
-			XmlNamespaceManager nameSpaceManager)
-		{
+			XmlNamespaceManager nameSpaceManager) {
 			// Get the corresponding <cfvo> node (by the position)
 			var node = topNode.SelectSingleNode(
 				string.Format(
 					"{0}[position()={1}]",
-				// {0}
+					// {0}
 					ExcelConditionalFormattingConstants.Paths.Cfvo,
-				// {1}
+					// {1}
 					ExcelConditionalFormattingValueObjectType.GetOrderByPosition(position, ruleType)),
 				nameSpaceManager);
 
-			if (node == null)
-			{
+			if (node == null) {
 				throw new Exception(
-          ExcelConditionalFormattingConstants.Errors.MissingCfvoNode);
+		  ExcelConditionalFormattingConstants.Errors.MissingCfvoNode);
 			}
 
 			return node;
@@ -146,27 +136,25 @@ namespace OfficeOpenXml.ConditionalFormatting
 		/// <param name="type"></param>
 		/// <returns></returns>
 		public static string GetAttributeByType(
-			eExcelConditionalFormattingValueObjectType type)
-		{
-			switch (type)
-			{
+			eExcelConditionalFormattingValueObjectType type) {
+			switch (type) {
 				case eExcelConditionalFormattingValueObjectType.Min:
 					return ExcelConditionalFormattingConstants.CfvoType.Min;
 
 				case eExcelConditionalFormattingValueObjectType.Max:
-          return ExcelConditionalFormattingConstants.CfvoType.Max;
+					return ExcelConditionalFormattingConstants.CfvoType.Max;
 
 				case eExcelConditionalFormattingValueObjectType.Num:
-          return ExcelConditionalFormattingConstants.CfvoType.Num;
+					return ExcelConditionalFormattingConstants.CfvoType.Num;
 
 				case eExcelConditionalFormattingValueObjectType.Formula:
-          return ExcelConditionalFormattingConstants.CfvoType.Formula;
+					return ExcelConditionalFormattingConstants.CfvoType.Formula;
 
 				case eExcelConditionalFormattingValueObjectType.Percent:
-          return ExcelConditionalFormattingConstants.CfvoType.Percent;
+					return ExcelConditionalFormattingConstants.CfvoType.Percent;
 
 				case eExcelConditionalFormattingValueObjectType.Percentile:
-          return ExcelConditionalFormattingConstants.CfvoType.Percentile;
+					return ExcelConditionalFormattingConstants.CfvoType.Percentile;
 			}
 
 			return string.Empty;
@@ -179,22 +167,20 @@ namespace OfficeOpenXml.ConditionalFormatting
 		/// <param name="ruleType"></param>
 		/// <returns></returns>
 		public static string GetParentPathByRuleType(
-			eExcelConditionalFormattingRuleType ruleType)
-		{
-			switch (ruleType)
-			{
+			eExcelConditionalFormattingRuleType ruleType) {
+			switch (ruleType) {
 				case eExcelConditionalFormattingRuleType.TwoColorScale:
 				case eExcelConditionalFormattingRuleType.ThreeColorScale:
 					return ExcelConditionalFormattingConstants.Paths.ColorScale;
 
 				case eExcelConditionalFormattingRuleType.ThreeIconSet:
-                case eExcelConditionalFormattingRuleType.FourIconSet:
-                case eExcelConditionalFormattingRuleType.FiveIconSet:
-					        return ExcelConditionalFormattingConstants.Paths.IconSet;
+				case eExcelConditionalFormattingRuleType.FourIconSet:
+				case eExcelConditionalFormattingRuleType.FiveIconSet:
+					return ExcelConditionalFormattingConstants.Paths.IconSet;
 
-                case eExcelConditionalFormattingRuleType.DataBar:
-                  return ExcelConditionalFormattingConstants.Paths.DataBar;
-              }
+				case eExcelConditionalFormattingRuleType.DataBar:
+					return ExcelConditionalFormattingConstants.Paths.DataBar;
+			}
 
 			return string.Empty;
 		}
@@ -205,10 +191,8 @@ namespace OfficeOpenXml.ConditionalFormatting
 		/// <param name="nodeType"></param>
 		/// <returns></returns>
 		public static string GetNodePathByNodeType(
-			eExcelConditionalFormattingValueObjectNodeType nodeType)
-		{
-			switch(nodeType)
-			{
+			eExcelConditionalFormattingValueObjectNodeType nodeType) {
+			switch (nodeType) {
 				case eExcelConditionalFormattingValueObjectNodeType.Cfvo:
 					return ExcelConditionalFormattingConstants.Paths.Cfvo;
 

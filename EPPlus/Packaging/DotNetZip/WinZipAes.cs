@@ -1,41 +1,8 @@
-//#define Trace
-
-// WinZipAes.cs
-// ------------------------------------------------------------------
-//
-// Copyright (c) 2009-2011 Dino Chiesa.
-// All rights reserved.
-//
-// This code module is part of DotNetZip, a zipfile class library.
-//
-// ------------------------------------------------------------------
-//
-// This code is licensed under the Microsoft Public License.
-// See the file License.txt for the license details.
-// More info on: http://dotnetzip.codeplex.com
-//
-// ------------------------------------------------------------------
-//
-// last saved (in emacs):
-// Time-stamp: <2011-July-12 13:42:06>
-//
-// ------------------------------------------------------------------
-//
-// This module defines the classes for dealing with WinZip's AES encryption,
-// according to the specifications for the format available on WinZip's website.
-//
-// Created: January 2009
-//
-// ------------------------------------------------------------------
-
-using System;
-using System.IO;
-using System.Collections.Generic;
-using System.Security.Cryptography;
 
 #if AESCRYPTO
 namespace OfficeOpenXml.Packaging.Ionic.Zip
 {
+
     /// <summary>
     ///   This is a helper class supporting WinZip AES encryption.
     ///   This class is intended for use only by the DotNetZip library.
@@ -240,7 +207,7 @@ namespace OfficeOpenXml.Packaging.Ionic.Zip
     }
 
 
-    #region DONT_COMPILE_BUT_KEEP_FOR_POTENTIAL_FUTURE_USE
+#region DONT_COMPILE_BUT_KEEP_FOR_POTENTIAL_FUTURE_USE
 #if NO
     internal class Util
     {
@@ -310,10 +277,7 @@ namespace OfficeOpenXml.Packaging.Ionic.Zip
     }
 
 #endif
-    #endregion
-
-
-
+#endregion
 
     /// <summary>
     ///   A stream that encrypts as it writes, or decrypts as it reads.  The
@@ -619,8 +583,6 @@ namespace OfficeOpenXml.Packaging.Ionic.Zip
             return n;
         }
 
-
-
         /// <summary>
         /// Returns the final HMAC-SHA1-80 for the data that was encrypted.
         /// </summary>
@@ -819,8 +781,6 @@ namespace OfficeOpenXml.Packaging.Ionic.Zip
             }
         }
 
-
-
         /// <summary>
         ///   Close the stream.
         /// </summary>
@@ -849,7 +809,6 @@ namespace OfficeOpenXml.Packaging.Ionic.Zip
             TraceOutput("-------------------------------------------------------");
         }
 
-
         /// <summary>
         /// Returns true if the stream can be read.
         /// </summary>
@@ -861,7 +820,6 @@ namespace OfficeOpenXml.Packaging.Ionic.Zip
                 return true;
             }
         }
-
 
         /// <summary>
         /// Always returns false.

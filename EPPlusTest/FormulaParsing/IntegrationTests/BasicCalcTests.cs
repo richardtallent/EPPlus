@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OfficeOpenXml.FormulaParsing;
-
+using FakeItEasy;
 
 namespace EPPlusTest.FormulaParsing.IntegrationTests {
 	[TestClass]

@@ -3,6 +3,8 @@ using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OfficeOpenXml;
 using OfficeOpenXml.FormulaParsing;
+using FakeItEasy;
+using FakeItEasy;
 
 namespace EPPlusTest.FormulaParsing.IntegrationTests.BuiltInFunctions {
 	[TestClass]

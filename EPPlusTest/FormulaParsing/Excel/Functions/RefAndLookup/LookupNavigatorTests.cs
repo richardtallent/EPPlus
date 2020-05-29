@@ -4,6 +4,7 @@ using OfficeOpenXml.FormulaParsing.Excel.Functions.RefAndLookup;
 using EPPlusTest.FormulaParsing.TestHelpers;
 using OfficeOpenXml.FormulaParsing;
 using OfficeOpenXml.FormulaParsing.ExcelUtilities;
+using FakeItEasy;
 
 namespace EPPlusTest.Excel.Functions.RefAndLookup {
 	[TestClass]

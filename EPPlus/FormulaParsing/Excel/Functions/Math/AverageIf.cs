@@ -58,8 +58,8 @@ namespace OfficeOpenXml.FormulaParsing.Excel.Functions.Math {
 		public override CompileResult Execute(IEnumerable<FunctionArgument> arguments, ParsingContext context) {
 			ValidateArguments(arguments, 2);
 			var criteria = arguments.ElementAt(1).ValueFirst != null ? ArgToString(arguments, 1) : null;
-			var retVal = 0d;
-			if (!(arguments.ElementAt(0).Value is ExcelDataProvider.IRangeInfo)) {
+			double retVal;
+			if (!(arguments.ElementAt(0).Value is ExcelDataProvider.IRangeInfo args)) {
 				var val = arguments.ElementAt(0).Value;
 				if (criteria != null && Evaluate(val, criteria)) {
 					var lookupRange = arguments.ElementAt(2).Value as ExcelDataProvider.IRangeInfo;

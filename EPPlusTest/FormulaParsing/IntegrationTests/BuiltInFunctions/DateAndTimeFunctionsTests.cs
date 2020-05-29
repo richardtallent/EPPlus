@@ -4,6 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OfficeOpenXml;
 using OfficeOpenXml.FormulaParsing;
 using System.Threading;
+using FakeItEasy;
 
 namespace EPPlusTest.FormulaParsing.IntegrationTests.BuiltInFunctions {
 	[TestClass]

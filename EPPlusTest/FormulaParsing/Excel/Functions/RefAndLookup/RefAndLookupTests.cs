@@ -9,6 +9,7 @@ using OfficeOpenXml.FormulaParsing.ExcelUtilities;
 using OfficeOpenXml.FormulaParsing.Excel.Functions;
 using OfficeOpenXml.FormulaParsing.ExpressionGraph;
 using AddressFunction = OfficeOpenXml.FormulaParsing.Excel.Functions.RefAndLookup.Address;
+using FakeItEasy;
 
 namespace EPPlusTest.Excel.Functions {
 	[TestClass]

@@ -93,7 +93,7 @@ namespace EPPlusTest.FormulaParsing.Excel.Functions {
 			_worksheet.Cells["C4"].Value = 2;
 			_worksheet.Cells["A5"].Formula = "COUNTIFS(A1:A4, \"d*f\", B1:B4; 2; C1:C4; 200)";
 			_worksheet.Calculate();
-			Assert.AreEqual(1d, _worksheet.Cells["A5"].Value);
+			Assert.AreEqual(1d, (double)_worksheet.Cells["A5"].Value);
 		}
 	}
 }

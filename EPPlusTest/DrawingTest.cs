@@ -61,9 +61,9 @@ namespace EPPlusTest {
 
 		public void Picture() {
 			var ws = _pck.Workbook.Worksheets.Add("Picture");
-			var pic = ws.Drawings.AddPicture("Pic1", Resources.Test1);
-
+			var pic = ws.Drawings.AddPicture("Pic1", (Image)Resources.Test1);
 			pic = ws.Drawings.AddPicture("Pic2", Resources.Test1);
+
 			pic.SetPosition(150, 200);
 			pic.Border.LineStyle = eLineStyle.Solid;
 			pic.Border.Fill.Color = Color.DarkCyan;

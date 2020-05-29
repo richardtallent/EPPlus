@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OfficeOpenXml.FormulaParsing.ExcelUtilities;
 using OfficeOpenXml.FormulaParsing;
+using FakeItEasy;
 
 namespace EPPlusTest.FormulaParsing {
 	[TestClass]

@@ -6,6 +6,7 @@ using OfficeOpenXml.FormulaParsing;
 using ExGraph = OfficeOpenXml.FormulaParsing.ExpressionGraph.ExpressionGraph;
 using OfficeOpenXml.FormulaParsing.LexicalAnalysis;
 using OfficeOpenXml.FormulaParsing.ExpressionGraph;
+using FakeItEasy;
 
 namespace EPPlusTest.FormulaParsing {
 	[TestClass]
@@ -81,9 +82,9 @@ namespace EPPlusTest.FormulaParsing {
 		[TestMethod]
 		public void ParseAtShouldCallExcelDataProvider() {
 			var excelDataProvider = A.Fake<ExcelDataProvider>();
-			A.CallTo(() => excelDataProvider.GetRangeFormula(string.Empty, 1, 1)).Returns("Sum(1,2)");
+			_ = A.CallTo(() => excelDataProvider.GetRangeFormula(string.Empty, 1, 1)).Returns("Sum(1,2)");
 			var parser = new FormulaParser(excelDataProvider);
-			var result = parser.ParseAt("A1");
+			var result = (double)parser.ParseAt("A1");
 			Assert.AreEqual(3d, result);
 		}
 

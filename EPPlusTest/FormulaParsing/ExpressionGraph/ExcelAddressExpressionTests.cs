@@ -6,6 +6,7 @@ using OfficeOpenXml;
 using OfficeOpenXml.FormulaParsing;
 using OfficeOpenXml.FormulaParsing.ExcelUtilities;
 using OfficeOpenXml.FormulaParsing.ExpressionGraph;
+using FakeItEasy;
 
 namespace EPPlusTest.FormulaParsing.ExpressionGraph {
 	[TestClass]

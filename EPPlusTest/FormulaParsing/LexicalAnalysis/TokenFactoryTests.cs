@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OfficeOpenXml.FormulaParsing;
 using OfficeOpenXml.FormulaParsing.LexicalAnalysis;
+using FakeItEasy;
 
 namespace EPPlusTest.FormulaParsing.LexicalAnalysis {
 	[TestClass]

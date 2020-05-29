@@ -129,7 +129,10 @@ namespace OfficeOpenXml {
 			}
 			//Range (ex A1:A2)
 			else {
-				_changePropMethod = Addresses == null ? SetRange : SetMultiRange;
+				if (Addresses == null)
+					_changePropMethod = SetRange;
+				else
+					_changePropMethod = SetMultiRange;
 			}
 		}
 

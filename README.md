@@ -1,6 +1,6 @@
-# RT.Excel
+# RT.Spreadsheet
 
-RT.Excel is a fork of EPPlus 4.5.3.3, the final LGPL version of that library.
+RT.Spreadsheet is a fork of EPPlus 4.5.3.3, the final LGPL version of that library.
 
 For support, new features, etc., **please support Jan's new commercial version of EPPlus**, hosted at https://github.com/EPPlusSoftware/EPPlus. You can also find a link there to the old (now frozen in time) verion of 4.5.3.3.
 
@@ -18,7 +18,7 @@ The source code formatting will differ significantly from EPPlus, since I make h
 
 ## The Name
 
-The project will be renamed to avoid any potential for confusion with EPPlus, but I haven't gotten around to that yet.
+The project has been renamed to avoid any potential for confusion with EPPlus.
 
 ## Trajectory
 
@@ -31,3 +31,4 @@ The project is licensed under the GNU Library General Public License (LGPL).
 ## Change Log
 
 2020-05-28 Initial fork; code formatting; fix bug in VAlign. README updated.
+2020-06-12 Renamed, updated default branch name

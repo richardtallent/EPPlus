@@ -1,8 +1,8 @@
 # RT.Spreadsheet
 
-RT.Spreadsheet is a fork of EPPlus 4.5.3.3, the final LGPL version of that library.
+RT.Spreadsheet is a .NET library for reading and writing Microsoft Excel files in the OOXML (Excel 2007+) format.
 
-For support, new features, etc., **please support Jan's new commercial version of EPPlus**, hosted at https://github.com/EPPlusSoftware/EPPlus. You can also find a link there to the old (now frozen in time) verion of 4.5.3.3.
+This is a fork of EPPlus 4.5.3.3, the final LGPL version of that library. For support, new features, etc., **please support Jan's new commercial version of EPPlus**, hosted at https://github.com/EPPlusSoftware/EPPlus. You can also find a link there to the old (now frozen in time) verion of 4.5.3.3.
 
 ## Goals
 

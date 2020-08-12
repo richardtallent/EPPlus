@@ -324,6 +324,7 @@ Release Candidate changes
 		<None Update="readme.txt">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>
+		<None Include="..\.editorconfig" Link=".editorconfig" />
 		<None Include="lgpl-3.0.txt">
 			<Pack>True</Pack>
 			<PackagePath></PackagePath>

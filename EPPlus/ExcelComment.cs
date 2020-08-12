@@ -108,11 +108,7 @@ namespace OfficeOpenXml {
 		/// <summary>
 		/// Sets the font of the first richtext item.
 		/// </summary>
-		public ExcelRichText Font {
-			get {
-				return RichText.Count > 0 ? RichText[0] : null;
-			}
-		}
+		public ExcelRichText Font => RichText.Count > 0 ? RichText[0] : null;
 
 		/// <summary>
 		/// Richtext collection

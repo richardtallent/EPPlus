@@ -70,17 +70,15 @@ namespace OfficeOpenXml.FormulaParsing.Excel.Functions.Math {
 				return ConvertUtil.GetValueDouble(obj);
 			}
 			if (!isInArray) {
-				double number;
-				System.DateTime date;
 				if (obj is bool) {
 					return ConvertUtil.GetValueDouble(obj);
-				} else if (ConvertUtil.TryParseNumericString(obj, out number)) {
+				} else if (ConvertUtil.TryParseNumericString(obj, out var number)) {
 					return number;
-				} else if (ConvertUtil.TryParseDateString(obj, out date)) {
+				} else if (ConvertUtil.TryParseDateString(obj, out System.DateTime date)) {
 					return date.ToOADate();
 				}
 			}
-			return default(double?);
+			return default;
 		}
 	}
 }

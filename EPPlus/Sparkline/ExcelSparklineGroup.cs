@@ -126,13 +126,9 @@ namespace OfficeOpenXml.Sparkline {
 		/// <summary>
 		/// The range containing the sparklines
 		/// </summary>
-		public ExcelRangeBase LocationRange {
-			get {
-				return Sparklines.Count == 0
+		public ExcelRangeBase LocationRange => Sparklines.Count == 0
 					? null
 					: _ws.Cells[Sparklines[0].Cell.Row, Sparklines[0].Cell.Column, Sparklines[Sparklines.Count - 1].Cell.Row, Sparklines[Sparklines.Count - 1].Cell.Column];
-			}
-		}
 
 		/// <summary>
 		/// The Sparklines for the sparklinegroup

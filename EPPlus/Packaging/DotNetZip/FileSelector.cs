@@ -126,7 +126,7 @@ namespace OfficeOpenXml.Packaging.Ionic {
 		}
 
 		private bool _Evaluate(Int64 Length) {
-			var result = false;
+			bool result;
 			switch (Operator) {
 				case ComparisonOperator.GreaterThanOrEqualTo:
 					result = Length >= Size;
@@ -188,7 +188,7 @@ namespace OfficeOpenXml.Packaging.Ionic {
 
 
 		private bool _Evaluate(DateTime x) {
-			var result = false;
+			bool result;
 			switch (Operator) {
 				case ComparisonOperator.GreaterThanOrEqualTo:
 					result = (x >= Time);

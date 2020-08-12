@@ -75,8 +75,7 @@ namespace OfficeOpenXml.FormulaParsing.Excel.Functions.Math {
 				return CreateResult(0d, DataType.Decimal);
 			}
 			var actualArgs = arguments.Skip(1);
-			ExcelFunction function = null;
-			function = GetFunctionByCalcType(funcNum);
+			ExcelFunction function = GetFunctionByCalcType(funcNum);
 			var compileResult = function.Execute(actualArgs, context);
 			compileResult.IsResultOfSubtotal = true;
 			return compileResult;

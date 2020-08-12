@@ -726,9 +726,6 @@ namespace OfficeOpenXml.Packaging.Ionic.Zlib {
 			int j;      // temporary storage
 			int tindex; // temporary pointer
 			int e;      // extra bits or operation
-			var b = 0;  // bit buffer
-			var k = 0;  // bits in bit buffer
-			var p = 0;  // input data pointer
 			int n;      // bytes available there
 			int q;      // output window write pointer
 			int m;      // bytes to end of window or read pointer
@@ -737,10 +734,10 @@ namespace OfficeOpenXml.Packaging.Ionic.Zlib {
 			ZlibCodec z = blocks._codec;
 
 			// copy input/output information to locals (UPDATE macro restores)
-			p = z.NextIn;
+			var p = z.NextIn;
 			n = z.AvailableBytesIn;
-			b = blocks.bitb;
-			k = blocks.bitk;
+			var b = blocks.bitb;
+			var k = blocks.bitk;
 			q = blocks.writeAt; m = q < blocks.readAt ? blocks.readAt - q - 1 : blocks.end - q;
 
 			// process input and output based on current state
@@ -1171,7 +1168,7 @@ namespace OfficeOpenXml.Packaging.Ionic.Zlib {
 											while (--e != 0);
 										} else {
 											Array.Copy(s.window, r, s.window, q, e);
-											q += e; r += e; e = 0;
+											q += e;
 										}
 										r = 0; // copy rest from start of window
 									}
@@ -1185,7 +1182,7 @@ namespace OfficeOpenXml.Packaging.Ionic.Zlib {
 									while (--c != 0);
 								} else {
 									Array.Copy(s.window, r, s.window, q, c);
-									q += c; r += c; c = 0;
+									q += c;
 								}
 								break;
 							} else if ((e & 64) == 0) {
@@ -1440,7 +1437,6 @@ namespace OfficeOpenXml.Packaging.Ionic.Zlib {
 
 					case InflateManagerMode.DICT1:
 						if (_codec.AvailableBytesIn == 0) return r;
-						r = f;
 						_codec.AvailableBytesIn--; _codec.TotalBytesIn++;
 						expectedCheck += (uint)(_codec.InputBuffer[_codec.NextIn++] & 0x000000ff);
 						_codec._Adler32 = expectedCheck;

@@ -513,8 +513,7 @@ namespace OfficeOpenXml.Table.PivotTable {
 			XmlElement prevField = null, newElement;
 			foreach (XmlElement field in rowsNode.ChildNodes) {
 				var x = field.GetAttribute(indexAttrText);
-				int fieldIndex;
-				if (int.TryParse(x, out fieldIndex)) {
+				if (int.TryParse(x, out var fieldIndex)) {
 					if (fieldIndex == index)    //Row already exists
 					{
 						return field;
@@ -876,9 +875,9 @@ namespace OfficeOpenXml.Table.PivotTable {
 				XmlNode rowColFields = IsRowField
 					? TopNode.SelectSingleNode("../../d:rowFields", NameSpaceManager)
 					: TopNode.SelectSingleNode("../../d:colFields", NameSpaceManager);
-				int fieldIndex, index = 0;
+				int index = 0;
 				foreach (XmlElement rowfield in rowColFields.ChildNodes) {
-					if (int.TryParse(rowfield.GetAttribute("x"), out fieldIndex)) {
+					if (int.TryParse(rowfield.GetAttribute("x"), out var fieldIndex)) {
 						if (_table.Fields[fieldIndex].BaseIndex == BaseIndex) {
 							var newElement = rowColFields.OwnerDocument.CreateElement("field", ExcelPackage.schemaMain);
 							newElement.SetAttribute("x", field.Index.ToString());

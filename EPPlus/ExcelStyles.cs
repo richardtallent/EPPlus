@@ -730,8 +730,7 @@ namespace OfficeOpenXml {
 		}
 		#region XmlHelpFunctions
 		private int GetXmlNodeInt(XmlNode node) {
-			int i;
-			return int.TryParse(GetXmlNode(node), out i) ? i : 0;
+			return int.TryParse(GetXmlNode(node), out var i) ? i : 0;
 		}
 		private string GetXmlNode(XmlNode node) {
 			if (node == null) {

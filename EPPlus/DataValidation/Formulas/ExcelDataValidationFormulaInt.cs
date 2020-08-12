@@ -39,8 +39,7 @@ namespace OfficeOpenXml.DataValidation.Formulas {
 			: base(namespaceManager, topNode, formulaPath) {
 			var value = GetXmlNodeString(formulaPath);
 			if (!string.IsNullOrEmpty(value)) {
-				var intValue = default(int);
-				if (int.TryParse(value, NumberStyles.Number, CultureInfo.InvariantCulture, out intValue)) {
+				if (int.TryParse(value, NumberStyles.Number, CultureInfo.InvariantCulture, out var intValue)) {
 					Value = intValue;
 				} else {
 					ExcelFormula = value;

@@ -40,8 +40,7 @@ namespace OfficeOpenXml.FormulaParsing.Excel.Functions {
 			if (obj.IsNumeric()) return util.ConvertUtil.GetValueDouble(obj);
 			var str = obj != null ? obj.ToString() : string.Empty;
 			try {
-				double d;
-				return double.TryParse(str, NumberStyles.Any, CultureInfo.InvariantCulture, out d)
+				return double.TryParse(str, NumberStyles.Any, CultureInfo.InvariantCulture, out var d)
 					? d
 					: (object)System.DateTime.Parse(str, CultureInfo.CurrentCulture, DateTimeStyles.None).ToOADate();
 			} catch// (Exception e)

@@ -51,9 +51,7 @@ namespace OfficeOpenXml.Encryption {
 		internal MemoryStream DecryptPackage(FileInfo fi, ExcelEncryption encryption) {
 			if (CompoundDocument.IsCompoundDocument(fi)) {
 				var doc = new CompoundDocument(fi);
-
-				MemoryStream ret = null;
-				ret = GetStreamFromPackage(doc, encryption);
+				MemoryStream ret = GetStreamFromPackage(doc, encryption);
 				return ret;
 			} else {
 				throw (new InvalidDataException(string.Format("File {0} is not an encrypted package", fi.FullName)));
@@ -267,14 +265,13 @@ namespace OfficeOpenXml.Encryption {
 		}
 
 		private MemoryStream EncryptPackageBinary(byte[] package, ExcelEncryption encryption) {
-			byte[] encryptionKey;
 			//Create the Encryption Info. This also returns the Encryptionkey
 			var encryptionInfo = CreateEncryptionInfo(encryption.Password,
 					encryption.Algorithm == EncryptionAlgorithm.AES128 ?
 						AlgorithmID.AES128 :
 					encryption.Algorithm == EncryptionAlgorithm.AES192 ?
 						AlgorithmID.AES192 :
-						AlgorithmID.AES256, out encryptionKey);
+						AlgorithmID.AES256, out var encryptionKey);
 
 			//ILockBytes lb;
 			//var iret = CreateILockBytesOnHGlobal(IntPtr.Zero, true, out lb);
@@ -914,9 +911,8 @@ namespace OfficeOpenXml.Encryption {
 			return hashFinal;
 		}
 		private byte[] GetPasswordHash(HashAlgorithm hashProvider, byte[] salt, string password, int spinCount, int hashSize) {
-			byte[] hash = null;
 			var tempHash = new byte[4 + hashSize];    //Iterator + prev. hash
-			hash = hashProvider.ComputeHash(CombinePassword(salt, password));
+			var hash = hashProvider.ComputeHash(CombinePassword(salt, password));
 
 			//Iterate "spinCount" times, inserting i in first 4 bytes and then the prev. hash in byte 5-24
 			for (var i = 0; i < spinCount; i++) {

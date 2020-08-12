@@ -1445,11 +1445,7 @@ namespace OfficeOpenXml.Packaging.Ionic.Zip {
 		/// </para>
 		///
 		/// </remarks>
-		public Double CompressionRatio {
-			get {
-				return UncompressedSize == 0 ? 0 : 100 * (1.0 - (1.0 * CompressedSize) / (1.0 * UncompressedSize));
-			}
-		}
+		public Double CompressionRatio => UncompressedSize == 0 ? 0 : 100 * (1.0 - (1.0 * CompressedSize) / (1.0 * UncompressedSize));
 
 		/// <summary>
 		/// The 32-bit CRC (Cyclic Redundancy Check) on the contents of the ZipEntry.
@@ -2126,7 +2122,7 @@ namespace OfficeOpenXml.Packaging.Ionic.Zip {
 
 
 		internal static string NameInArchive(String filename, string directoryPathInArchive) {
-			string result = null;
+			string result;
 			if (directoryPathInArchive == null)
 				result = filename;
 

@@ -143,8 +143,7 @@ namespace OfficeOpenXml.Drawing.Vml {
 					return Color.FromArgb(0xff, 0xff, 0xe1);
 				} else {
 					if (col.StartsWith("#")) col = col.Substring(1, col.Length - 1);
-					int res;
-					return int.TryParse(col, System.Globalization.NumberStyles.AllowHexSpecifier, CultureInfo.InvariantCulture, out res)
+					return int.TryParse(col, System.Globalization.NumberStyles.AllowHexSpecifier, CultureInfo.InvariantCulture, out var res)
 						? Color.FromArgb(res)
 						: Color.Empty;
 				}
@@ -201,8 +200,7 @@ namespace OfficeOpenXml.Drawing.Vml {
 					return Color.Black;
 				} else {
 					if (col.StartsWith("#")) col = col.Substring(1, col.Length - 1);
-					int res;
-					return int.TryParse(col, System.Globalization.NumberStyles.AllowHexSpecifier, CultureInfo.InvariantCulture, out res)
+					return int.TryParse(col, System.Globalization.NumberStyles.AllowHexSpecifier, CultureInfo.InvariantCulture, out var res)
 						? Color.FromArgb(res)
 						: Color.Empty;
 				}
@@ -223,8 +221,7 @@ namespace OfficeOpenXml.Drawing.Vml {
 				if (wt == "") return (Single).75;
 				if (wt.EndsWith("pt")) wt = wt.Substring(0, wt.Length - 2);
 
-				Single ret;
-				return Single.TryParse(wt, System.Globalization.NumberStyles.Any, CultureInfo.InvariantCulture, out ret) ? ret : 0;
+				return Single.TryParse(wt, System.Globalization.NumberStyles.Any, CultureInfo.InvariantCulture, out var ret) ? ret : 0;
 			}
 			set => SetXmlNodeString(LINEWIDTH_PATH, value.ToString(CultureInfo.InvariantCulture) + "pt");
 		}
@@ -291,8 +288,7 @@ namespace OfficeOpenXml.Drawing.Vml {
 		/// </summary>
 		public bool AutoFit {
 			get {
-				string value;
-				GetStyle(GetXmlNodeString(TEXTBOX_STYLE_PATH), "mso-fit-shape-to-text", out value);
+				GetStyle(GetXmlNodeString(TEXTBOX_STYLE_PATH), "mso-fit-shape-to-text", out var value);
 				return value == "t";
 			}
 			set => SetXmlNodeString(TEXTBOX_STYLE_PATH, SetStyle(GetXmlNodeString(TEXTBOX_STYLE_PATH), "mso-fit-shape-to-text", value ? "t" : ""));

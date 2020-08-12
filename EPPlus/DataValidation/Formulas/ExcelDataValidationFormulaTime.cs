@@ -40,8 +40,7 @@ namespace OfficeOpenXml.DataValidation.Formulas {
 			: base(namespaceManager, topNode, formulaPath) {
 			var value = GetXmlNodeString(formulaPath);
 			if (!string.IsNullOrEmpty(value)) {
-				var time = default(decimal);
-				if (decimal.TryParse(value, NumberStyles.Any, CultureInfo.InvariantCulture, out time)) {
+				if (decimal.TryParse(value, NumberStyles.Any, CultureInfo.InvariantCulture, out var time)) {
 					Value = new ExcelTime(time);
 				} else {
 					Value = new ExcelTime();

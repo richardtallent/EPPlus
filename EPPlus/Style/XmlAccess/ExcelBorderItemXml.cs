@@ -85,11 +85,7 @@ namespace OfficeOpenXml.Style.XmlAccess {
 			get => _color;
 			internal set => _color = value;
 		}
-		internal override string Id {
-			get {
-				return Exists ? Style + Color.Id : "None";
-			}
-		}
+		internal override string Id => Exists ? Style + Color.Id : "None";
 
 		internal ExcelBorderItemXml Copy() {
 			var borderItem = new ExcelBorderItemXml(NameSpaceManager);

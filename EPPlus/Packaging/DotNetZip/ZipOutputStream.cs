@@ -1556,16 +1556,8 @@ namespace OfficeOpenXml.Packaging.Ionic.Zip {
 			}
 		}
 
-		public long ParallelDeflateThreshold {
-			get {
-				return _zf != null ? _zf.ParallelDeflateThreshold : _zos.ParallelDeflateThreshold;
-			}
-		}
-		public int ParallelDeflateMaxBufferPairs {
-			get {
-				return _zf != null ? _zf.ParallelDeflateMaxBufferPairs : _zos.ParallelDeflateMaxBufferPairs;
-			}
-		}
+		public long ParallelDeflateThreshold => _zf != null ? _zf.ParallelDeflateThreshold : _zos.ParallelDeflateThreshold;
+		public int ParallelDeflateMaxBufferPairs => _zf != null ? _zf.ParallelDeflateMaxBufferPairs : _zos.ParallelDeflateMaxBufferPairs;
 #endif
 
 		public int CodecBufferSize {
@@ -1575,17 +1567,9 @@ namespace OfficeOpenXml.Packaging.Ionic.Zip {
 			}
 		}
 
-		public Ionic.Zlib.CompressionStrategy Strategy {
-			get {
-				return _zf != null ? _zf.Strategy : _zos.Strategy;
-			}
-		}
+		public Ionic.Zlib.CompressionStrategy Strategy => _zf != null ? _zf.Strategy : _zos.Strategy;
 
-		public Zip64Option UseZip64WhenSaving {
-			get {
-				return _zf != null ? _zf.UseZip64WhenSaving : _zos.EnableZip64;
-			}
-		}
+		public Zip64Option UseZip64WhenSaving => _zf != null ? _zf.UseZip64WhenSaving : _zos.EnableZip64;
 
 		public System.Text.Encoding AlternateEncoding {
 			get {
@@ -1607,11 +1591,7 @@ namespace OfficeOpenXml.Packaging.Ionic.Zip {
 			}
 		}
 
-		public Stream ReadStream {
-			get {
-				return _zf != null ? _zf.ReadStream : _zis.ReadStream;
-			}
-		}
+		public Stream ReadStream => _zf != null ? _zf.ReadStream : _zis.ReadStream;
 	}
 
 }

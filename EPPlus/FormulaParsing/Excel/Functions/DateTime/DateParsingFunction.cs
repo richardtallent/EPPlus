@@ -4,7 +4,7 @@ using System.Globalization;
 namespace OfficeOpenXml.FormulaParsing.Excel.Functions.DateTime {
 	public abstract class DateParsingFunction : ExcelFunction {
 		protected System.DateTime ParseDate(IEnumerable<FunctionArgument> arguments, object dateObj) {
-			System.DateTime date = System.DateTime.MinValue;
+			System.DateTime date;
 			if (dateObj is string) {
 				date = System.DateTime.Parse(dateObj.ToString(), CultureInfo.InvariantCulture);
 			} else {

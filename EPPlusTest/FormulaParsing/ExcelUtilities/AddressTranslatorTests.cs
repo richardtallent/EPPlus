@@ -23,15 +23,13 @@ namespace EPPlusTest.ExcelUtilities {
 
 		[TestMethod]
 		public void ShouldTranslateRowNumber() {
-			int col, row;
-			_addressTranslator.ToColAndRow("A2", out col, out row);
+			_addressTranslator.ToColAndRow("A2", out var col, out var row);
 			Assert.AreEqual(2, row);
 		}
 
 		[TestMethod]
 		public void ShouldTranslateLettersToColumnIndex() {
-			int col, row;
-			_addressTranslator.ToColAndRow("C1", out col, out row);
+			_addressTranslator.ToColAndRow("C1", out var col, out var row);
 			Assert.AreEqual(3, col);
 			_addressTranslator.ToColAndRow("AA2", out col, out row);
 			Assert.AreEqual(27, col);
@@ -41,15 +39,13 @@ namespace EPPlusTest.ExcelUtilities {
 
 		[TestMethod]
 		public void ShouldTranslateLetterAddressUsingMaxRowsFromProviderLower() {
-			int col, row;
-			_addressTranslator.ToColAndRow("A", out col, out row);
+			_addressTranslator.ToColAndRow("A", out var col, out var row);
 			Assert.AreEqual(1, row);
 		}
 
 		[TestMethod]
 		public void ShouldTranslateLetterAddressUsingMaxRowsFromProviderUpper() {
-			int col, row;
-			_addressTranslator.ToColAndRow("A", out col, out row, AddressTranslator.RangeCalculationBehaviour.LastPart);
+			_addressTranslator.ToColAndRow("A", out var col, out var row, AddressTranslator.RangeCalculationBehaviour.LastPart);
 			Assert.AreEqual(ExcelMaxRows, row);
 		}
 	}

@@ -39,8 +39,7 @@ namespace OfficeOpenXml.DataValidation.Formulas {
 			: base(namespaceManager, topNode, formulaPath) {
 			var value = GetXmlNodeString(formulaPath);
 			if (!string.IsNullOrEmpty(value)) {
-				var oADate = default(double);
-				if (double.TryParse(value, NumberStyles.Any, CultureInfo.InvariantCulture, out oADate)) {
+				if (double.TryParse(value, NumberStyles.Any, CultureInfo.InvariantCulture, out var oADate)) {
 					Value = DateTime.FromOADate(oADate);
 				} else {
 					ExcelFormula = value;

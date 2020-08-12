@@ -400,11 +400,7 @@ namespace OfficeOpenXml {
 		/// returns the first address if the address is a multi address.
 		/// A1:A2,B1:B2 returns A1:A2
 		/// </summary>
-		internal string FirstAddress {
-			get {
-				return string.IsNullOrEmpty(_firstAddress) ? _address : _firstAddress;
-			}
-		}
+		internal string FirstAddress => string.IsNullOrEmpty(_firstAddress) ? _address : _firstAddress;
 		internal string AddressSpaceSeparated => _address.Replace(',', ' '); //Conditional formatting and a few other places use space as separator for mulit addresses.
 
 		/// <summary>
@@ -612,8 +608,8 @@ namespace OfficeOpenXml {
 
 			var rows = address.Rows;
 			var cols = address.Columns;
-			var retAddress = "";
 			if (Shift == eShiftType.Right) {
+				string retAddress;
 				if (address._fromRow > _fromRow) {
 					retAddress = GetAddress(_fromRow, _fromCol, address._fromRow, _toCol, _fromRowFixed, _fromColFixed, _toRowFixed, _toColFixed);
 				}
@@ -666,10 +662,9 @@ namespace OfficeOpenXml {
 		}
 
 		internal static AddressType IsValid(string Address, bool r1c1 = false) {
-			double d;
 			if (Address == "#REF!") {
 				return AddressType.Invalid;
-			} else if (double.TryParse(Address, NumberStyles.Any, CultureInfo.InvariantCulture, out d)) //A double, no valid address
+			} else if (double.TryParse(Address, NumberStyles.Any, CultureInfo.InvariantCulture, out var d)) //A double, no valid address
 			  {
 				return AddressType.Invalid;
 			} else if (IsFormula(Address)) {
@@ -678,8 +673,7 @@ namespace OfficeOpenXml {
 				if (r1c1 && IsR1C1(Address)) {
 					return AddressType.R1C1;
 				} else {
-					string wb, ws, intAddress;
-					if (SplitAddress(Address, out wb, out ws, out intAddress)) {
+					if (SplitAddress(Address, out var wb, out var ws, out var intAddress)) {
 						if (intAddress.Contains("[")) //Table reference
 						{
 							return string.IsNullOrEmpty(wb) ? AddressType.InternalAddress : AddressType.ExternalAddress;
@@ -746,9 +740,9 @@ namespace OfficeOpenXml {
 		private static bool IsAddress(string intAddress) {
 			if (string.IsNullOrEmpty(intAddress)) return false;
 			var cells = intAddress.Split(':');
-			int fromRow, toRow, fromCol, toCol;
+			int toRow, toCol;
 
-			if (!GetRowCol(cells[0], out fromRow, out fromCol, false)) {
+			if (!GetRowCol(cells[0], out var fromRow, out var fromCol, false)) {
 				return false;
 			}
 			if (cells.Length > 1) {
@@ -843,9 +837,8 @@ namespace OfficeOpenXml {
 
 		internal bool IsSingleCell => (_fromRow == _toRow && _fromCol == _toCol);
 		internal static String GetWorkbookPart(string address) {
-			var ix = 0;
 			if (address[0] == '[') {
-				ix = address.IndexOf(']') + 1;
+				var ix = address.IndexOf(']') + 1;
 				if (ix > 0) {
 					return address.Substring(1, ix - 2);
 				}
@@ -895,9 +888,7 @@ namespace OfficeOpenXml {
 		}
 		private static string GetString(string address, int ix, out int endIx) {
 			var strIx = address.IndexOf("''");
-			var prevStrIx = ix;
 			while (strIx > -1) {
-				prevStrIx = strIx;
 				strIx = address.IndexOf("''");
 			}
 			endIx = address.IndexOf("'");
@@ -938,7 +929,6 @@ namespace OfficeOpenXml {
 
 		public ExcelAddress(string Address, ExcelPackage package, ExcelAddressBase referenceAddress) :
 			base(Address, package, referenceAddress) {
-
 		}
 
 		/// <summary>
@@ -958,6 +948,7 @@ namespace OfficeOpenXml {
 			}
 		}
 	}
+
 	public class ExcelFormulaAddress : ExcelAddressBase {
 		internal ExcelFormulaAddress()
 			: base() {
@@ -973,6 +964,7 @@ namespace OfficeOpenXml {
 			if (string.IsNullOrEmpty(_ws)) _ws = ws;
 			SetFixed();
 		}
+
 		internal ExcelFormulaAddress(string ws, string address, bool isName)
 			: base(address, isName) {
 			if (string.IsNullOrEmpty(_ws)) _ws = ws;
@@ -1026,6 +1018,7 @@ namespace OfficeOpenXml {
 				SetFixed();
 			}
 		}
+
 		internal new List<ExcelFormulaAddress> _addresses;
 		public new List<ExcelFormulaAddress> Addresses {
 			get {
@@ -1033,9 +1026,9 @@ namespace OfficeOpenXml {
 					_addresses = new List<ExcelFormulaAddress>();
 				}
 				return _addresses;
-
 			}
 		}
+
 		internal string GetOffset(int row, int column) {
 			int fromRow = _fromRow, fromCol = _fromCol, toRow = _toRow, tocol = _toCol;
 			var isMulti = (fromRow != toRow || fromCol != tocol);
@@ -1064,5 +1057,7 @@ namespace OfficeOpenXml {
 			}
 			return a;
 		}
+
 	}
+
 }

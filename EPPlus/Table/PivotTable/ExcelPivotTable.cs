@@ -60,8 +60,7 @@ namespace OfficeOpenXml.Table.PivotTable {
 
 			//Add row fields.
 			foreach (XmlElement rowElem in TopNode.SelectNodes("d:rowFields/d:field", NameSpaceManager)) {
-				int x;
-				if (int.TryParse(rowElem.GetAttribute("x"), out x) && x >= 0) {
+				if (int.TryParse(rowElem.GetAttribute("x"), out var x) && x >= 0) {
 					RowFields.AddInternal(Fields[x]);
 				} else {
 					rowElem.ParentNode.RemoveChild(rowElem);
@@ -70,8 +69,7 @@ namespace OfficeOpenXml.Table.PivotTable {
 
 			////Add column fields.
 			foreach (XmlElement colElem in TopNode.SelectNodes("d:colFields/d:field", NameSpaceManager)) {
-				int x;
-				if (int.TryParse(colElem.GetAttribute("x"), out x) && x >= 0) {
+				if (int.TryParse(colElem.GetAttribute("x"), out var x) && x >= 0) {
 					ColumnFields.AddInternal(Fields[x]);
 				} else {
 					colElem.ParentNode.RemoveChild(colElem);
@@ -81,8 +79,7 @@ namespace OfficeOpenXml.Table.PivotTable {
 			//Add Page elements
 			//int index = 0;
 			foreach (XmlElement pageElem in TopNode.SelectNodes("d:pageFields/d:pageField", NameSpaceManager)) {
-				int fld;
-				if (int.TryParse(pageElem.GetAttribute("fld"), out fld) && fld >= 0) {
+				if (int.TryParse(pageElem.GetAttribute("fld"), out var fld) && fld >= 0) {
 					var field = Fields[fld];
 					field._pageFieldSettings = new ExcelPivotTablePageFieldSettings(NameSpaceManager, pageElem, field, fld);
 					PageFields.AddInternal(field);
@@ -92,8 +89,7 @@ namespace OfficeOpenXml.Table.PivotTable {
 			//Add data elements
 			//index = 0;
 			foreach (XmlElement dataElem in TopNode.SelectNodes("d:dataFields/d:dataField", NameSpaceManager)) {
-				int fld;
-				if (int.TryParse(dataElem.GetAttribute("fld"), out fld) && fld >= 0) {
+				if (int.TryParse(dataElem.GetAttribute("fld"), out var fld) && fld >= 0) {
 					var field = Fields[fld];
 					var dataField = new ExcelPivotTableDataField(NameSpaceManager, dataElem, field);
 					DataFields.AddInternal(dataField);

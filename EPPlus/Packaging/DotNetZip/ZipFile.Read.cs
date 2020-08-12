@@ -792,9 +792,9 @@ namespace OfficeOpenXml.Packaging.Ionic.Zip {
 		private static void ReadCentralDirectoryFooter(ZipFile zf) {
 			Stream s = zf.ReadStream;
 			var signature = Ionic.Zip.SharedUtilities.ReadSignature(s);
-
-			byte[] block = null;
 			var j = 0;
+
+			byte[] block;
 			if (signature == ZipConstants.Zip64EndOfCentralDirectoryRecordSignature) {
 				// We have a ZIP64 EOCD
 				// This data block is 4 bytes sig, 8 bytes size, 44 bytes fixed data,
@@ -824,7 +824,6 @@ namespace OfficeOpenXml.Packaging.Ionic.Zip {
 				zf._versionNeededToExtract = BitConverter.ToUInt16(block, j);
 				j += 2;
 				zf._diskNumberWithCd = BitConverter.ToUInt32(block, j);
-				j += 2;
 
 				//zf._diskNumberWithCd++; // hack!!
 

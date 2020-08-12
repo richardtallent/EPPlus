@@ -626,10 +626,8 @@ namespace OfficeOpenXml.Utils.CompundDocument {
 
 			//Directory Size
 			var dirsPerSector = _sectorSize / 128;
-			var dirSectors = 0;
-			var firstFATSectorPos = _currentFATSectorPos;
 			if (dirs.Count > dirsPerSector) {
-				dirSectors = GetSectors(dirs.Count, dirsPerSector);
+				var dirSectors = GetSectors(dirs.Count, dirsPerSector);
 				noOfSectors += dirSectors - 1; //Four item per sector. Sector two is fixed for directories
 			}
 

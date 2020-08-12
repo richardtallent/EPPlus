@@ -172,9 +172,8 @@ iterateToken:
 						}
 					}
 				} else if (t.TokenType == TokenType.NameValue) {
-					string adrWb, adrWs, adrName;
 					ExcelNamedRange name;
-					ExcelAddressBase.SplitAddress(t.Value, out adrWb, out adrWs, out adrName, f.ws == null ? "" : f.ws.Name);
+					ExcelAddressBase.SplitAddress(t.Value, out var adrWb, out var adrWs, out var adrName, f.ws == null ? "" : f.ws.Name);
 					if (!string.IsNullOrEmpty(adrWs)) {
 						if (f.ws == null) {
 							f.ws = wb.Worksheets[adrWs];

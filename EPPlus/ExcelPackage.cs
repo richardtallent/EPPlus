@@ -516,7 +516,6 @@ namespace OfficeOpenXml {
 					Encryption.Password = password;
 					var encrHandler = new EncryptedPackageHandler();
 					ms = encrHandler.DecryptPackage(template, Encryption);
-					encrHandler = null;
 				} else {
 					WriteFileToStream(template.FullName, ms);
 				}
@@ -544,7 +543,6 @@ namespace OfficeOpenXml {
 					Encryption.IsEncrypted = true;
 					Encryption.Password = password;
 					ms = encrHandler.DecryptPackage(File, Encryption);
-					encrHandler = null;
 				} else {
 					WriteFileToStream(File.FullName, ms);
 				}

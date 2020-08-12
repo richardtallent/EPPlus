@@ -828,8 +828,7 @@ namespace OfficeOpenXml.Packaging.Ionic.Zlib {
 			do {
 				var firstSkip = -1;
 				var millisecondsToWait = doAll ? 200 : (mustWait ? -1 : 0);
-				var nextToWrite = -1;
-
+				int nextToWrite;
 				do {
 					if (Monitor.TryEnter(_toWrite, millisecondsToWait)) {
 						nextToWrite = -1;
@@ -1123,7 +1122,6 @@ namespace OfficeOpenXml.Packaging.Ionic.Zlib {
 
 		private bool DeflateOneSegment(WorkItem workitem) {
 			ZlibCodec compressor = workitem.compressor;
-			var rc = 0;
 			compressor.ResetDeflate();
 			compressor.NextIn = 0;
 
@@ -1138,7 +1136,7 @@ namespace OfficeOpenXml.Packaging.Ionic.Zlib {
 			while (compressor.AvailableBytesIn > 0 || compressor.AvailableBytesOut == 0);
 
 			// step 2: flush (sync)
-			rc = compressor.Deflate(FlushType.Sync);
+			var rc = compressor.Deflate(FlushType.Sync);
 
 			workitem.compressedBytesAvailable = (int)compressor.TotalBytesOut;
 			return true;

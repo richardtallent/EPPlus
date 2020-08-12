@@ -88,8 +88,7 @@ namespace OfficeOpenXml.FormulaParsing.ExcelUtilities {
 			}
 			var operatorCandidate = GetNonAlphanumericStartChars(expression);
 			if (!string.IsNullOrEmpty(operatorCandidate) && operatorCandidate != "-") {
-				IOperator op;
-				if (OperatorsDict.Instance.TryGetValue(operatorCandidate, out op)) {
+				if (OperatorsDict.Instance.TryGetValue(operatorCandidate, out IOperator op)) {
 					var right = expression.Replace(operatorCandidate, string.Empty);
 					if (left == null && right == string.Empty) {
 						return op.Operator == Operators.Equals;
@@ -97,11 +96,9 @@ namespace OfficeOpenXml.FormulaParsing.ExcelUtilities {
 					if (left == null ^ right == string.Empty) {
 						return op.Operator == Operators.NotEqualTo;
 					}
-					double leftNum, rightNum;
-					DateTime date;
-					var leftIsNumeric = TryConvertToDouble(left, out leftNum);
-					var rightIsNumeric = double.TryParse(right, out rightNum);
-					var rightIsDate = DateTime.TryParse(right, out date);
+					var leftIsNumeric = TryConvertToDouble(left, out var leftNum);
+					var rightIsNumeric = double.TryParse(right, out var rightNum);
+					var rightIsDate = DateTime.TryParse(right, out DateTime date);
 					if (leftIsNumeric && rightIsNumeric) {
 						return EvaluateOperator(leftNum, rightNum, op);
 					}

@@ -36,8 +36,7 @@ namespace OfficeOpenXml.FormulaParsing.Excel.Functions {
 			if (obj == null) return false;
 			if (obj is bool) return (bool)obj;
 			if (obj.IsNumeric()) return Convert.ToBoolean(obj);
-			bool result;
-			return bool.TryParse(obj.ToString(), out result) ? result : (object)result;
+			return bool.TryParse(obj.ToString(), out var result) ? result : (object)result;
 		}
 	}
 }

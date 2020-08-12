@@ -184,16 +184,8 @@ internal class PageIndex : IndexBase, IDisposable {
 		return o;
 	}
 
-	public int MinIndex {
-		get {
-			return Rows.Length > 0 ? IndexOffset + Rows[0].Index : -1;
-		}
-	}
-	public int MaxIndex {
-		get {
-			return RowCount > 0 ? IndexOffset + Rows[RowCount - 1].Index : -1;
-		}
-	}
+	public int MinIndex => Rows.Length > 0 ? IndexOffset + Rows[0].Index : -1;
+	public int MaxIndex => RowCount > 0 ? IndexOffset + Rows[RowCount - 1].Index : -1;
 	public int GetIndex(int pos) => IndexOffset + Rows[pos].Index;
 	public void Dispose() => Rows = null;
 }
@@ -325,7 +317,7 @@ internal class CellStore<T> : IDisposable// : IEnumerable<ulong>, IEnumerator<ul
 	}
 	internal T GetValue(int Row, int Column) {
 		var i = GetPointer(Row, Column);
-		return i >= 0 ? _values[i] : default(T);
+		return i >= 0 ? _values[i] : default;
 		//var col = GetPosition(Column);
 		//if (col >= 0)  
 		//{
@@ -509,7 +501,7 @@ internal class CellStore<T> : IDisposable// : IEnumerable<ulong>, IEnumerator<ul
 							var cellPos = Array.BinarySearch(pageItem.Rows, 0, pageItem.RowCount, _searchItem);
 							if (cellPos < 0) {
 								cellPos = ~cellPos;
-								AddCell(_columnIndex[col], pos, cellPos, ix, default(T));
+								AddCell(_columnIndex[col], pos, cellPos, ix, default);
 								Updater(_values, pageItem.Rows[cellPos].IndexPointer, rowIx, colIx, Value);
 							} else {
 								Updater(_values, pageItem.Rows[cellPos].IndexPointer, rowIx, colIx, Value);
@@ -520,7 +512,7 @@ internal class CellStore<T> : IDisposable// : IEnumerable<ulong>, IEnumerator<ul
 							AddColumn(col, colIx);
 							AddPage(_columnIndex[col], 0, page);
 							var ix = (short)(rowIx - (page << pageBits));
-							AddCell(_columnIndex[col], 0, 0, ix, default(T));
+							AddCell(_columnIndex[col], 0, 0, ix, default);
 							Updater(_values, _columnIndex[col]._pages[0].Rows[0].IndexPointer, rowIx, colIx, Value);
 						}
 					}
@@ -565,7 +557,7 @@ internal class CellStore<T> : IDisposable// : IEnumerable<ulong>, IEnumerator<ul
 				var cellPos = Array.BinarySearch(pageItem.Rows, 0, pageItem.RowCount, _searchItem);
 				if (cellPos < 0) {
 					cellPos = ~cellPos;
-					AddCell(_columnIndex[col], pos, cellPos, ix, default(T));
+					AddCell(_columnIndex[col], pos, cellPos, ix, default);
 					Updater(_values, pageItem.Rows[cellPos].IndexPointer, Value);
 				} else {
 					Updater(_values, pageItem.Rows[cellPos].IndexPointer, Value);
@@ -576,7 +568,7 @@ internal class CellStore<T> : IDisposable// : IEnumerable<ulong>, IEnumerator<ul
 				AddColumn(col, Column);
 				AddPage(_columnIndex[col], 0, page);
 				var ix = (short)(Row - (page << pageBits));
-				AddCell(_columnIndex[col], 0, 0, ix, default(T));
+				AddCell(_columnIndex[col], 0, 0, ix, default);
 				Updater(_values, _columnIndex[col]._pages[0].Rows[0].IndexPointer, Value);
 			}
 		}
@@ -741,7 +733,7 @@ internal class CellStore<T> : IDisposable// : IEnumerable<ulong>, IEnumerator<ul
 	private int ResetPageOffset(ColumnIndex column, int pagePos, int rows) {
 		PageIndex fromPage = column._pages[pagePos];
 		PageIndex toPage;
-		short pageAdd = 0;
+		short pageAdd;
 		if (fromPage.Offset < -PageSize) {
 			toPage = column._pages[pagePos - 1];
 			pageAdd = -1;
@@ -1097,7 +1089,6 @@ internal class CellStore<T> : IDisposable// : IEnumerable<ulong>, IEnumerator<ul
 		}
 		Array.Copy(columnIndex._pages, pagePos + 1, columnIndex._pages, pagePos + 2, columnIndex.PageCount - pagePos - 1);
 		columnIndex._pages[pagePos + 1] = nextPage;
-		page = nextPage;
 		//pos -= PageSize;
 		columnIndex.PageCount++;
 		return pagePos + 1;

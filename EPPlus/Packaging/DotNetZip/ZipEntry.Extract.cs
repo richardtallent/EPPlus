@@ -1112,7 +1112,7 @@ ExitTry:;
 		// workitem 7968
 		private string UnsupportedAlgorithm {
 			get {
-				var alg = String.Empty;
+				string alg;
 				switch (_UnsupportedAlgorithmId) {
 					case 0:
 						alg = "--";
@@ -1162,7 +1162,7 @@ ExitTry:;
 		// workitem 7968
 		private string UnsupportedCompressionMethod {
 			get {
-				var meth = String.Empty;
+				string meth;
 				switch ((int)_CompressionMethod) {
 					case 0:
 						meth = "Store";

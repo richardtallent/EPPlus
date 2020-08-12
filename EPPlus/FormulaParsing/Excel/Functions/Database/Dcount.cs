@@ -43,7 +43,7 @@ namespace OfficeOpenXml.FormulaParsing.Excel.Functions.Database {
 			ValidateArguments(arguments, 2);
 			var dbAddress = arguments.ElementAt(0).ValueAsRangeInfo.Address.Address;
 			string field = null;
-			string criteriaRange = null;
+			string criteriaRange;
 			if (arguments.Count() == 2) {
 				criteriaRange = arguments.ElementAt(1).ValueAsRangeInfo.Address.Address;
 			} else {

@@ -203,7 +203,7 @@ namespace OfficeOpenXml.Packaging {
 			while (rels.Count > 0) {
 				rels.Remove(rels.First().Id);
 			}
-			rels = null;
+
 			_contentTypes.Remove(GetUriKey(Uri.OriginalString));
 			//remove all relations
 			Parts.Remove(GetUriKey(Uri.OriginalString));

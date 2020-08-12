@@ -64,8 +64,7 @@ namespace OfficeOpenXml.FormulaParsing.LexicalAnalysis {
 		IDictionary<string, Token> ITokenSeparatorProvider.Tokens => _tokens;
 
 		public bool IsOperator(string item) {
-			Token token;
-			if (_tokens.TryGetValue(item, out token)) {
+			if (_tokens.TryGetValue(item, out Token token)) {
 				if (token.TokenType == TokenType.Operator) {
 					return true;
 				}

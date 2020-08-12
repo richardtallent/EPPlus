@@ -93,8 +93,8 @@ namespace OfficeOpenXml.Table {
 		System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() => _cols.GetEnumerator();
 		internal string GetUniqueName(string name) {
 			if (_colNames.ContainsKey(name)) {
-				var newName = name;
 				var i = 2;
+				string newName;
 				do {
 					newName = name + (i++).ToString(CultureInfo.InvariantCulture);
 				}

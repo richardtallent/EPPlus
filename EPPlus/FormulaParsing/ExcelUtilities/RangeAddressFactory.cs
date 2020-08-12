@@ -125,8 +125,7 @@ namespace OfficeOpenXml.FormulaParsing.ExcelUtilities {
 		}
 
 		private void HandleSingleCellAddress(RangeAddress rangeAddress, ExcelAddressInfo addressInfo) {
-			int col, row;
-			_addressTranslator.ToColAndRow(addressInfo.StartCell, out col, out row);
+			_addressTranslator.ToColAndRow(addressInfo.StartCell, out var col, out var row);
 			rangeAddress.FromCol = col;
 			rangeAddress.ToCol = col;
 			rangeAddress.FromRow = row;
@@ -134,10 +133,8 @@ namespace OfficeOpenXml.FormulaParsing.ExcelUtilities {
 		}
 
 		private void HandleMultipleCellAddress(RangeAddress rangeAddress, ExcelAddressInfo addressInfo) {
-			int fromCol, fromRow;
-			_addressTranslator.ToColAndRow(addressInfo.StartCell, out fromCol, out fromRow);
-			int toCol, toRow;
-			_addressTranslator.ToColAndRow(addressInfo.EndCell, out toCol, out toRow, AddressTranslator.RangeCalculationBehaviour.LastPart);
+			_addressTranslator.ToColAndRow(addressInfo.StartCell, out var fromCol, out var fromRow);
+			_addressTranslator.ToColAndRow(addressInfo.EndCell, out var toCol, out var toRow, AddressTranslator.RangeCalculationBehaviour.LastPart);
 			rangeAddress.FromCol = fromCol;
 			rangeAddress.ToCol = toCol;
 			rangeAddress.FromRow = fromRow;

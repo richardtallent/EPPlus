@@ -352,7 +352,6 @@ namespace EPPlusTest {
 				package.Save();
 			}
 			fs.Seek(0, SeekOrigin.Begin);
-			var fs2 = fs;
 		}
 		[TestMethod]
 		public void Issue15179() {
@@ -1389,8 +1388,6 @@ namespace EPPlusTest {
 		}
 		[TestMethod, Ignore]
 		public void Issue_8() {
-			dynamic c = 1;
-
 			var l = new List<dynamic>();
 			l.Add(1);
 			l.Add("s");

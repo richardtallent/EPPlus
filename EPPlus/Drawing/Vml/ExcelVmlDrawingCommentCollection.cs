@@ -137,8 +137,7 @@ namespace OfficeOpenXml.Drawing.Vml {
 			if (_nextID == 0) {
 				foreach (ExcelVmlDrawingComment draw in this) {
 					if (draw.Id.Length > 3 && draw.Id.StartsWith("vml")) {
-						int id;
-						if (int.TryParse(draw.Id.Substring(3, draw.Id.Length - 3), System.Globalization.NumberStyles.Any, CultureInfo.InvariantCulture, out id)) {
+						if (int.TryParse(draw.Id.Substring(3, draw.Id.Length - 3), System.Globalization.NumberStyles.Any, CultureInfo.InvariantCulture, out var id)) {
 							if (id > _nextID) {
 								_nextID = id;
 							}

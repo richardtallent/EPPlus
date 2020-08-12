@@ -148,11 +148,7 @@ namespace OfficeOpenXml.FormulaParsing {
 
 			public double ValueDouble => ConvertUtil.GetValueDouble(_values.Value._value, true);
 			public double ValueDoubleLogical => ConvertUtil.GetValueDouble(_values.Value._value, false);
-			public bool IsHiddenRow {
-				get {
-					return _ws.GetValueInner(_values.Row, 0) is RowInternal row ? row.Hidden || row.Height == 0 : false;
-				}
-			}
+			public bool IsHiddenRow => _ws.GetValueInner(_values.Row, 0) is RowInternal row ? row.Hidden || row.Height == 0 : false;
 
 			public bool IsExcelError => ExcelErrorValue.Values.IsErrorValue(_values.Value._value);
 

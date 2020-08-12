@@ -48,25 +48,13 @@ namespace EPPlusSamples
             public string FirstName { get; set; }
             public string MiddleName { get; set; }
             public string LastName { get; set; }
-            public string Name
-            {
-                get
-                {
-                    return string.IsNullOrEmpty(MiddleName) ? FirstName + " " + LastName : FirstName + " " + MiddleName + " " + LastName;
-                }
-            }
-            public DateTime OrderDate { get; set; }
+			public string Name => string.IsNullOrEmpty(MiddleName) ? FirstName + " " + LastName : FirstName + " " + MiddleName + " " + LastName;
+			public DateTime OrderDate { get; set; }
             public decimal SubTotal { get; set; }
             public decimal Tax { get; set; }
             public decimal Freight { get; set; }
-            public decimal Total
-            {
-                get
-                {
-                    return SubTotal + Tax + Freight;
-                }
-            }
-        }
+			public decimal Total => SubTotal + Tax + Freight;
+		}
         public static string RunSample12(string connectionStr)
         {
             var list = new List<SalesDTO>();

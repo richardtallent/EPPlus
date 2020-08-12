@@ -198,7 +198,7 @@ namespace OfficeOpenXml.DataValidation {
 				var operatorString = GetXmlNodeString(_operatorPath);
 				return !string.IsNullOrEmpty(operatorString)
 					? (ExcelDataValidationOperator)Enum.Parse(typeof(ExcelDataValidationOperator), operatorString)
-					: default(ExcelDataValidationOperator);
+					: default;
 			}
 			set {
 				if (!ValidationType.AllowOperator) {

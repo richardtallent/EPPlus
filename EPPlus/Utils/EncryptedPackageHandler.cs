@@ -34,16 +34,10 @@
  * Jan Källman		License changed GPL-->LGPL 2011-12-16
  *******************************************************************************/
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Runtime.InteropServices; 
-using comTypes=System.Runtime.InteropServices.ComTypes;
-using System.IO;
-using System.Security.Cryptography;
-using System.Xml;
-namespace OfficeOpenXml.Utils
-{
-    [ComImport] 
+using System.Runtime.InteropServices;
+using comTypes = System.Runtime.InteropServices.ComTypes;
+namespace OfficeOpenXml.Utils {
+	[ComImport] 
     [Guid("0000000d-0000-0000-C000-000000000046")] 
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)] 
     internal interface IEnumSTATSTG 

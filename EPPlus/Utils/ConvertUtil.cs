@@ -168,7 +168,6 @@ namespace OfficeOpenXml.Utils {
 		internal static string ExcelDecodeString(string t) {
 			var match = Regex.Match(t, "(_x005F|_x[0-9A-F]{4,4}_)");
 			if (!match.Success) return t;
-
 			var useNextValue = false;
 			var ret = new StringBuilder();
 			var prevIndex = 0;
@@ -216,7 +215,7 @@ namespace OfficeOpenXml.Utils {
 		/// </exception>
 		public static T GetTypedCellValue<T>(object value) {
 			if (value == null)
-				return default(T);
+				return default;
 
 			var fromType = value.GetType();
 			var toType = typeof(T);
@@ -229,13 +228,13 @@ namespace OfficeOpenXml.Utils {
 
 			// if converting to nullable struct and input is blank string, return null
 			if (toNullableUnderlyingType != null && fromType == typeof(string) && ((string)value).Trim() == string.Empty)
-				return default(T);
+				return default;
 
 			toType = toNullableUnderlyingType ?? toType;
 
 			if (toType == typeof(DateTime)) {
-				if (value is double)
-					return (T)(object)(DateTime.FromOADate((double)value));
+				if (value is double d)
+					return (T)(object)(DateTime.FromOADate(d));
 
 				if (fromType == typeof(TimeSpan))
 					return ((T)(object)(new DateTime(((TimeSpan)value).Ticks)));
@@ -243,8 +242,8 @@ namespace OfficeOpenXml.Utils {
 				if (fromType == typeof(string))
 					return (T)(object)DateTime.Parse(value.ToString());
 			} else if (toType == typeof(TimeSpan)) {
-				if (value is double)
-					return (T)(object)(new TimeSpan(DateTime.FromOADate((double)value).Ticks));
+				if (value is double d)
+					return (T)(object)(new TimeSpan(DateTime.FromOADate(d).Ticks));
 
 				if (fromType == typeof(DateTime))
 					return ((T)(object)(new TimeSpan(((DateTime)value).Ticks)));

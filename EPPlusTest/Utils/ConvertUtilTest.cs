@@ -10,10 +10,9 @@ namespace EPPlusTest.Utils {
 	public class ConvertUtilTest {
 		[TestMethod]
 		public void TryParseNumericString() {
-			double result;
 			object numericString = null;
 			double expected = 0;
-			Assert.IsFalse(ConvertUtil.TryParseNumericString(numericString, out result));
+			Assert.IsFalse(ConvertUtil.TryParseNumericString(numericString, out var result));
 			Assert.AreEqual(expected, result);
 			expected = 1442.0;
 			numericString = expected.ToString("e", CultureInfo.CurrentCulture); // 1.442E+003
@@ -45,10 +44,9 @@ namespace EPPlusTest.Utils {
 
 		[TestMethod]
 		public void TryParseDateString() {
-			DateTime result;
 			object dateString = null;
 			DateTime expected = DateTime.MinValue;
-			Assert.IsFalse(ConvertUtil.TryParseDateString(dateString, out result));
+			Assert.IsFalse(ConvertUtil.TryParseDateString(dateString, out DateTime result));
 			Assert.AreEqual(expected, result);
 			expected = new DateTime(2013, 1, 15);
 			dateString = expected.ToString("d", CultureInfo.CurrentCulture); // 1/15/2013
@@ -157,7 +155,7 @@ namespace EPPlusTest.Utils {
 		// previous implementation
 		internal T GetTypedValue<T>(object v) {
 			if (v == null) {
-				return default(T);
+				return default;
 			}
 			Type fromType = v.GetType();
 			Type toType = typeof(T);
@@ -174,19 +172,17 @@ namespace EPPlusTest.Utils {
 				if (fromType == typeof(TimeSpan)) {
 					return ((T)(object)(new DateTime(((TimeSpan)v).Ticks)));
 				} else if (fromType == typeof(string)) {
-					DateTime dt;
-					return DateTime.TryParse(v.ToString(), out dt) ? (T)(object)(dt) : default(T);
+					return DateTime.TryParse(v.ToString(), out DateTime dt) ? (T)(object)(dt) : default;
 
 				} else {
-					return cnv.CanConvertTo(typeof(double)) ? (T)(object)(DateTime.FromOADate((double)cnv.ConvertTo(v, typeof(double)))) : default(T);
+					return cnv.CanConvertTo(typeof(double)) ? (T)(object)(DateTime.FromOADate((double)cnv.ConvertTo(v, typeof(double)))) : default;
 				}
 			} else if (toType == typeof(TimeSpan) || toType2 == typeof(TimeSpan))    //Handle timespan
 			  {
 				if (fromType == typeof(DateTime)) {
 					return ((T)(object)(new TimeSpan(((DateTime)v).Ticks)));
 				} else if (fromType == typeof(string)) {
-					TimeSpan ts;
-					return TimeSpan.TryParse(v.ToString(), out ts) ? (T)(object)(ts) : default(T);
+					return TimeSpan.TryParse(v.ToString(), out TimeSpan ts) ? (T)(object)(ts) : default;
 				} else {
 					if (cnv.CanConvertTo(typeof(double))) {
 
@@ -199,7 +195,7 @@ namespace EPPlusTest.Utils {
 							return (T)Convert.ChangeType(v, typeof(T));
 						} catch (Exception) {
 							// This was the previous behaviour -- no conversion is available.
-							return default(T);
+							return default;
 						}
 					}
 				}
@@ -217,7 +213,7 @@ namespace EPPlusTest.Utils {
 					if (fromType == typeof(double) && toType == typeof(decimal)) {
 						return (T)(object)Convert.ToDecimal(v);
 					} else {
-						return fromType == typeof(decimal) && toType == typeof(double) ? (T)(object)Convert.ToDouble(v) : default(T);
+						return fromType == typeof(decimal) && toType == typeof(double) ? (T)(object)Convert.ToDouble(v) : default;
 					}
 				}
 			}

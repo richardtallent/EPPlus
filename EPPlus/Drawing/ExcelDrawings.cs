@@ -180,11 +180,7 @@ namespace OfficeOpenXml.Drawing {
 				return _drawingNames.ContainsKey(Name) ? _drawings[_drawingNames[Name]] : null;
 			}
 		}
-		public int Count {
-			get {
-				return _drawings == null ? 0 : _drawings.Count;
-			}
-		}
+		public int Count => _drawings == null ? 0 : _drawings.Count;
 		Packaging.ZipPackagePart _part = null;
 		internal Packaging.ZipPackagePart Part => _part;
 		Uri _uriDrawing = null;

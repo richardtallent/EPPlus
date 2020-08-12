@@ -4,7 +4,7 @@ namespace OfficeOpenXml.FormulaParsing.Excel.Functions {
 	public struct ExcelDoubleCellValue : IComparable<ExcelDoubleCellValue>, IComparable {
 		public ExcelDoubleCellValue(double val) {
 			Value = val;
-			CellRow = default(int?);
+			CellRow = default;
 		}
 
 		public ExcelDoubleCellValue(double val, int cellRow) {

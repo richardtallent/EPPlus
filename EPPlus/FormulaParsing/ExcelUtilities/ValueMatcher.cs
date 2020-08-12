@@ -69,21 +69,17 @@ namespace OfficeOpenXml.FormulaParsing.ExcelUtilities {
 		protected virtual int CompareStringToString(string s1, string s2) => s1.CompareTo(s2);
 
 		protected virtual int CompareStringToObject(string o1, object o2) {
-			double d1;
-			if (double.TryParse(o1, out d1)) {
+			if (double.TryParse(o1, out var d1)) {
 				return d1.CompareTo(Convert.ToDouble(o2));
 			}
-			bool b1;
-			if (bool.TryParse(o1, out b1)) {
+			if (bool.TryParse(o1, out var b1)) {
 				return b1.CompareTo(Convert.ToBoolean(o2));
 			}
-			DateTime dt1;
-			return DateTime.TryParse(o1, out dt1) ? dt1.CompareTo(Convert.ToDateTime(o2)) : IncompatibleOperands;
+			return DateTime.TryParse(o1, out DateTime dt1) ? dt1.CompareTo(Convert.ToDateTime(o2)) : IncompatibleOperands;
 		}
 
 		protected virtual int CompareObjectToString(object o1, string o2) {
-			double d2;
-			return double.TryParse(o2, out d2) ? Convert.ToDouble(o1).CompareTo(d2) : IncompatibleOperands;
+			return double.TryParse(o2, out var d2) ? Convert.ToDouble(o1).CompareTo(d2) : IncompatibleOperands;
 		}
 	}
 }

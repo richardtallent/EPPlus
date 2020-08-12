@@ -88,8 +88,7 @@ namespace OfficeOpenXml.Drawing.Vml {
 			var anchor = GetXmlNodeString("x:Anchor");
 			var numbers = anchor.Split(',');
 			if (numbers.Length == 8) {
-				int ret;
-				if (int.TryParse(numbers[_startPos + pos], System.Globalization.NumberStyles.Number, CultureInfo.InvariantCulture, out ret)) {
+				if (int.TryParse(numbers[_startPos + pos], System.Globalization.NumberStyles.Number, CultureInfo.InvariantCulture, out var ret)) {
 					return ret;
 				}
 			}

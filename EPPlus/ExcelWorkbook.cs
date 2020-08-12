@@ -162,10 +162,9 @@ namespace OfficeOpenXml {
 				foreach (XmlElement elem in nl) {
 					var fullAddress = elem.InnerText;
 
-					int localSheetID;
 					ExcelWorksheet nameWorksheet;
 
-					if (!int.TryParse(elem.GetAttribute("localSheetId"), NumberStyles.Number, CultureInfo.InvariantCulture, out localSheetID)) {
+					if (!int.TryParse(elem.GetAttribute("localSheetId"), NumberStyles.Number, CultureInfo.InvariantCulture, out var localSheetID)) {
 						localSheetID = -1;
 						nameWorksheet = null;
 					} else {
@@ -182,8 +181,7 @@ namespace OfficeOpenXml {
 						if (start >= 0 && end >= 0) {
 
 							var externalIndex = fullAddress.Substring(start + 1, end - start - 1);
-							int index;
-							if (int.TryParse(externalIndex, NumberStyles.Any, CultureInfo.InvariantCulture, out index)) {
+							if (int.TryParse(externalIndex, NumberStyles.Any, CultureInfo.InvariantCulture, out var index)) {
 								if (index > 0 && index <= _externalReferences.Count) {
 									fullAddress = fullAddress.Substring(0, start) + "[" + _externalReferences[index - 1] + "]" + fullAddress.Substring(end + 1);
 								}
@@ -197,7 +195,6 @@ namespace OfficeOpenXml {
 						|| addressType == ExcelAddressBase.AddressType.ExternalName
 						|| addressType == ExcelAddressBase.AddressType.Formula
 						|| addressType == ExcelAddressBase.AddressType.ExternalAddress) {
-						double value;
 						range = new ExcelRangeBase(this, nameWorksheet, elem.GetAttribute("name"), true);
 						namedRange = nameWorksheet == null
 							? _names.Add(elem.GetAttribute("name"), range)
@@ -206,7 +203,7 @@ namespace OfficeOpenXml {
 						if (Utils.ConvertUtil._invariantCompareInfo.IsPrefix(fullAddress, "\"")) {
 							//String value
 							namedRange.NameValue = fullAddress.Substring(1, fullAddress.Length - 2);
-						} else if (double.TryParse(fullAddress, NumberStyles.Number, CultureInfo.InvariantCulture, out value)) {
+						} else if (double.TryParse(fullAddress, NumberStyles.Number, CultureInfo.InvariantCulture, out var value)) {
 							namedRange.NameValue = value;
 						} else {
 							//if (addressType == ExcelAddressBase.AddressType.ExternalAddress || addressType == ExcelAddressBase.AddressType.ExternalName)
@@ -417,11 +414,7 @@ namespace OfficeOpenXml {
 			set => SetXmlNodeString(codeModuleNamePath, value);
 		}
 		internal void CodeNameChange(string value) => CodeModuleName = value;
-		public VBA.ExcelVBAModule CodeModule {
-			get {
-				return VbaProject != null ? VbaProject.Modules[CodeModuleName] : null;
-			}
-		}
+		public VBA.ExcelVBAModule CodeModule => VbaProject != null ? VbaProject.Modules[CodeModuleName] : null;
 
 		const string date1904Path = "d:workbookPr/@date1904";
 		internal const double date1904Offset = 365.5 * 4;  // offset to fix 1900 and 1904 differences, 4 OLE years

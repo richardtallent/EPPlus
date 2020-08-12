@@ -141,10 +141,8 @@ namespace OfficeOpenXml {
 				return sh + ToR1C1_1(part, row, col);
 		}
 		private static string ToR1C1_1(string part, int row, int col) {
-			int addrRow, addrCol;
-			bool fixRow, fixCol;
 			var sb = new StringBuilder();
-			if (GetRowCol(part, out addrRow, out addrCol, false, out fixRow, out fixCol)) {
+			if (GetRowCol(part, out var addrRow, out var addrCol, false, out var fixRow, out var fixCol)) {
 				if (addrRow == 0 && addrCol == 0) {
 					return part;
 				}
@@ -255,11 +253,10 @@ namespace OfficeOpenXml {
 		/// <param name="colIncr"></param>
 		/// <returns></returns>
 		private static string AddToRowColumnTranslator(string Address, int row, int col, int rowIncr, int colIncr) {
-			int fromRow, fromCol;
 			if (Address == "#REF!") {
 				return Address;
 			}
-			if (GetRowCol(Address, out fromRow, out fromCol, false)) {
+			if (GetRowCol(Address, out var fromRow, out var fromCol, false)) {
 				if (fromRow == 0 || fromCol == 0) {
 					return Address;
 				}
@@ -343,8 +340,7 @@ namespace OfficeOpenXml {
 		#endregion
 
 		internal static bool GetRowColFromAddress(string CellAddress, out int FromRow, out int FromColumn, out int ToRow, out int ToColumn) {
-			bool fixedFromRow, fixedFromColumn, fixedToRow, fixedToColumn;
-			return GetRowColFromAddress(CellAddress, out FromRow, out FromColumn, out ToRow, out ToColumn, out fixedFromRow, out fixedFromColumn, out fixedToRow, out fixedToColumn);
+			return GetRowColFromAddress(CellAddress, out FromRow, out FromColumn, out ToRow, out ToColumn, out var fixedFromRow, out var fixedFromColumn, out var fixedToRow, out var fixedToColumn);
 		}
 
 		/// <summary>
@@ -428,8 +424,7 @@ namespace OfficeOpenXml {
 		/// <param name="throwException">throw exception if invalid, otherwise returns false</param>
 		/// <returns></returns>
 		internal static bool GetRowCol(string address, out int row, out int col, bool throwException) {
-			bool fixedRow, fixedCol;
-			return GetRowCol(address, out row, out col, throwException, out fixedRow, out fixedCol);
+			return GetRowCol(address, out row, out col, throwException, out var fixedRow, out var fixedCol);
 		}
 		internal static bool GetRowCol(string address, out int row, out int col, bool throwException, out bool fixedRow, out bool fixedCol) {
 			var colPart = true;
@@ -709,8 +704,7 @@ namespace OfficeOpenXml {
 		public static bool IsValidCellAddress(string cellAddress) {
 			var result = false;
 			try {
-				int row, col;
-				if (GetRowColFromAddress(cellAddress, out row, out col)) {
+				if (GetRowColFromAddress(cellAddress, out var row, out var col)) {
 					result = row > 0 && col > 0 && row <= ExcelPackage.MaxRows && col <= ExcelPackage.MaxColumns;
 				}
 			} catch { }

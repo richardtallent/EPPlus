@@ -648,11 +648,7 @@ namespace OfficeOpenXml.Packaging.Ionic.Crc {
 		/// <summary>
 		///   Returns the length of the underlying stream.
 		/// </summary>
-		public override long Length {
-			get {
-				return _lengthLimit == CrcCalculatorStream.UnsetLengthLimit ? _innerStream.Length : _lengthLimit;
-			}
-		}
+		public override long Length => _lengthLimit == CrcCalculatorStream.UnsetLengthLimit ? _innerStream.Length : _lengthLimit;
 
 		/// <summary>
 		///   The getter for this property returns the total bytes read.

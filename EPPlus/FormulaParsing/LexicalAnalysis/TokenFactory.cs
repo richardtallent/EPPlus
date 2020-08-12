@@ -57,16 +57,15 @@ namespace OfficeOpenXml.FormulaParsing.LexicalAnalysis {
 		private bool _r1c1;
 		public Token Create(IEnumerable<Token> tokens, string token) => Create(tokens, token, null);
 		public Token Create(IEnumerable<Token> tokens, string token, string worksheet) {
-			Token tokenSeparator = null;
-			if (_tokenSeparatorProvider.Tokens.TryGetValue(token, out tokenSeparator)) {
+			if (_tokenSeparatorProvider.Tokens.TryGetValue(token, out Token tokenSeparator)) {
 				return tokenSeparator;
 			}
 			var tokenList = (IList<Token>)tokens;
 			//Address with worksheet-string before  /JK
 			if (token.StartsWith("!") && tokenList[tokenList.Count - 1].TokenType == TokenType.String) {
-				var addr = "";
 				var i = tokenList.Count - 2;
 				if (i > 0) {
+					string addr;
 					if (tokenList[i].TokenType == TokenType.StringContent) {
 						addr = "'" + tokenList[i].Value.Replace("'", "''") + "'";
 					} else {

@@ -55,7 +55,7 @@ namespace OfficeOpenXml.Packaging.Ionic.Zlib {
 		protected internal DateTime _GzipMtime;
 		protected internal int _gzipHeaderByteCount;
 
-		internal int Crc32 { get { return crc == null ? 0 : crc.Crc32Result; } }
+		internal int Crc32 => crc == null ? 0 : crc.Crc32Result;
 
 		public ZlibBaseStream(System.IO.Stream stream,
 							  CompressionMode compressionMode,
@@ -125,7 +125,7 @@ namespace OfficeOpenXml.Packaging.Ionic.Zlib {
 			z.InputBuffer = buffer;
 			_z.NextIn = offset;
 			_z.AvailableBytesIn = count;
-			var done = false;
+			bool done;
 			do {
 				_z.OutputBuffer = workingBuffer;
 				_z.NextOut = 0;
@@ -155,7 +155,7 @@ namespace OfficeOpenXml.Packaging.Ionic.Zlib {
 			if (_z == null) return;
 
 			if (_streamMode == StreamMode.Writer) {
-				var done = false;
+				bool done;
 				do {
 					_z.OutputBuffer = workingBuffer;
 					_z.NextOut = 0;
@@ -386,7 +386,6 @@ namespace OfficeOpenXml.Packaging.Ionic.Zlib {
 			if (offset < buffer.GetLowerBound(0)) throw new ArgumentOutOfRangeException("offset");
 			if ((offset + count) > buffer.GetLength(0)) throw new ArgumentOutOfRangeException("count");
 
-			var rc = 0;
 
 			// set up the output of the deflate/inflate codec:
 			_z.OutputBuffer = buffer;
@@ -398,6 +397,8 @@ namespace OfficeOpenXml.Packaging.Ionic.Zlib {
 			// may initialize it.)
 			_z.InputBuffer = workingBuffer;
 
+
+			int rc;
 			do {
 				// need data in _workingBuffer in order to deflate/inflate.  Here, we check if we have any.
 				if ((_z.AvailableBytesIn == 0) && (!nomoreinput)) {

@@ -31,7 +31,6 @@ namespace OfficeOpenXml.FormulaParsing.Excel.Functions {
 	public class IntArgumentParser : ArgumentParser {
 		public override object Parse(object obj) {
 			Require.That(obj).Named("argument").IsNotNull();
-			int result;
 			if (obj is ExcelDataProvider.IRangeInfo) {
 				var r = ((ExcelDataProvider.IRangeInfo)obj).FirstOrDefault();
 				return r == null ? 0 : Convert.ToInt32(r.ValueDouble);
@@ -43,7 +42,7 @@ namespace OfficeOpenXml.FormulaParsing.Excel.Functions {
 			if (objType == typeof(double) || objType == typeof(decimal)) {
 				return Convert.ToInt32(obj);
 			}
-			if (!int.TryParse(obj.ToString(), out result)) {
+			if (!int.TryParse(obj.ToString(), out var result)) {
 				throw new ExcelErrorValueException(ExcelErrorValue.Create(eErrorType.Value));
 			}
 			return result;

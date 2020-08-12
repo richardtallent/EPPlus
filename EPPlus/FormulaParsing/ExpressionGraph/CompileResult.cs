@@ -62,11 +62,7 @@ namespace OfficeOpenXml.FormulaParsing.ExpressionGraph {
 			private set;
 		}
 
-		public object ResultValue {
-			get {
-				return !(Result is ExcelDataProvider.IRangeInfo r) ? Result : r.GetValue(r.Address._fromRow, r.Address._fromCol);
-			}
-		}
+		public object ResultValue => !(Result is ExcelDataProvider.IRangeInfo r) ? Result : r.GetValue(r.Address._fromRow, r.Address._fromCol);
 
 		public double ResultNumeric {
 			get {
@@ -101,8 +97,7 @@ namespace OfficeOpenXml.FormulaParsing.ExpressionGraph {
 
 		public bool IsNumericString {
 			get {
-				double result;
-				if (DataType == DataType.String && ConvertUtil.TryParseNumericString(Result, out result)) {
+				if (DataType == DataType.String && ConvertUtil.TryParseNumericString(Result, out var result)) {
 					_ResultNumeric = result;
 					return true;
 				}
@@ -112,8 +107,7 @@ namespace OfficeOpenXml.FormulaParsing.ExpressionGraph {
 
 		public bool IsDateString {
 			get {
-				DateTime result;
-				if (DataType == DataType.String && ConvertUtil.TryParseDateString(Result, out result)) {
+				if (DataType == DataType.String && ConvertUtil.TryParseDateString(Result, out DateTime result)) {
 					_ResultNumeric = result.ToOADate();
 					return true;
 				}

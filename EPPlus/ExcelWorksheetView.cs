@@ -62,9 +62,8 @@ namespace OfficeOpenXml {
 					return address == "" ? "A1" : address;
 				}
 				set {
-					int fromCol, fromRow, toCol, toRow;
 					if (_selectionNode == null) CreateSelectionElement();
-					ExcelCellBase.GetRowColFromAddress(value, out fromRow, out fromCol, out toRow, out toCol);
+					ExcelCellBase.GetRowColFromAddress(value, out var fromRow, out var fromCol, out int toRow, out var toCol);
 					SetXmlNodeString(_activeCellPath, value);
 					if (((XmlElement)TopNode).GetAttribute("sqref") == "") {
 
@@ -91,9 +90,8 @@ namespace OfficeOpenXml {
 					return address == "" ? "A1" : address;
 				}
 				set {
-					int fromCol, fromRow, toCol, toRow;
 					if (_selectionNode == null) CreateSelectionElement();
-					ExcelCellBase.GetRowColFromAddress(value, out fromRow, out fromCol, out toRow, out toCol);
+					ExcelCellBase.GetRowColFromAddress(value, out var fromRow, out var fromCol, out int toRow, out var toCol);
 					SetXmlNodeString(_selectionRangePath, value);
 					if (((XmlElement)TopNode).GetAttribute("activeCell") == "") {
 

@@ -267,8 +267,7 @@ if (_chartSeries.Chart.ChartType == eChartType.XYScatterLinesNoMarkers ||
 			var r = 255;
 			var s = xPath4Alpha(xPath);
 			if (s.Length > 0) {
-				var i = 0;
-				if (int.TryParse(GetXmlNodeString(s), System.Globalization.NumberStyles.Any, CultureInfo.InvariantCulture, out i)) {
+				if (int.TryParse(GetXmlNodeString(s), System.Globalization.NumberStyles.Any, CultureInfo.InvariantCulture, out var i)) {
 					r = (i == 0) ? 0 : 100 - (i / 1000);
 				}
 			}

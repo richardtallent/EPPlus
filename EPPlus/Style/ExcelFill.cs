@@ -95,10 +95,6 @@ namespace OfficeOpenXml.Style {
 				return _gradient;
 			}
 		}
-		internal override string Id {
-			get {
-				return _gradient == null ? PatternType + PatternColor.Id + BackgroundColor.Id : _gradient.Id;
-			}
-		}
+		internal override string Id => _gradient == null ? PatternType + PatternColor.Id + BackgroundColor.Id : _gradient.Id;
 	}
 }

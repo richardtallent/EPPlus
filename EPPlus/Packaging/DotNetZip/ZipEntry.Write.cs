@@ -536,7 +536,7 @@ namespace OfficeOpenXml.Packaging.Ionic.Zip {
 			// and finally, we need to remove any leading .\
 
 			var SlashFixed = FileName.Replace("\\", "/");
-			string s1 = null;
+			string s1;
 			if ((_TrimVolumeFromFullyQualifiedPaths) && (FileName.Length >= 3)
 				&& (FileName[1] == ':') && (SlashFixed[2] == '/')) {
 				// trim off volume letter, colon, and slash

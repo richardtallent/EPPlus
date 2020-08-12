@@ -709,7 +709,6 @@ namespace OfficeOpenXml.Packaging.Ionic.Zip {
 														string comment,
 														ZipContainer container) {
 			System.Text.Encoding encoding = GetEncoding(container, comment);
-			var j = 0;
 			var bufferLength = 22;
 			byte[] block = null;
 			Int16 commentLength = 0;
@@ -736,6 +735,7 @@ namespace OfficeOpenXml.Packaging.Ionic.Zip {
 			bytes[i++] = 0;
 			bytes[i++] = 0;
 
+			int j;
 			// handle ZIP64 extensions for the end-of-central-directory
 			if (entryCount >= 0xFFFF || zip64 == Zip64Option.Always) {
 				// the ZIP64 version.
@@ -790,7 +790,6 @@ namespace OfficeOpenXml.Packaging.Ionic.Zip {
 					for (j = 0; (j < commentLength) && (i + j < bytes.Length); j++) {
 						bytes[i + j] = block[j];
 					}
-					i += j;
 				}
 			}
 
@@ -874,8 +873,6 @@ namespace OfficeOpenXml.Packaging.Ionic.Zip {
 			// total number of disks
 			// (this will change later)
 			Array.Copy(BitConverter.GetBytes(numSegments), 0, bytes, i, 4);
-			i += 4;
-
 			return bytes;
 		}
 

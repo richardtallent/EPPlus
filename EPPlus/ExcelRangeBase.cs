@@ -372,7 +372,6 @@ namespace OfficeOpenXml {
 			}
 			set {
 				_styleID = _worksheet.Workbook.Styles.GetStyleIdFromName(value);
-				var col = _fromCol;
 				if (_fromRow == 1 && _toRow == ExcelPackage.MaxRows)    //Full column
 				{
 					ExcelColumn column;
@@ -384,7 +383,6 @@ namespace OfficeOpenXml {
 
 					var cols = new CellsStoreEnumerator<ExcelCoreValue>(_worksheet._values, 0, _fromCol + 1, 0, _toCol);
 					if (cols.Next()) {
-						col = _fromCol;
 						while (column.ColumnMin <= _toCol) {
 							if (column.ColumnMax > _toCol) {
 								var newCol = _worksheet.CopyColumn(column, _toCol + 1, column.ColumnMax);
@@ -637,7 +635,7 @@ namespace OfficeOpenXml {
 			var normalSize = Convert.ToSingle(ExcelWorkbook.GetWidthPixels(nf.Name, nf.Size));
 
 			Bitmap b;
-			Graphics g = null;
+			Graphics g;
 			try {
 				//Check for missing GDI+, then use WPF istead.
 				b = new Bitmap(1, 1);
@@ -2146,12 +2144,12 @@ namespace OfficeOpenXml {
 			public CultureInfo cultureInfo = CultureInfo.CurrentCulture;
 			public CompareOptions compareOptions = CompareOptions.None;
 			public int Compare(SortItem<ExcelCoreValue> x, SortItem<ExcelCoreValue> y) {
-				var ret = 0;
 				for (var i = 0; i < columns.Length; i++) {
 					var x1 = x.Items[columns[i]]._value;
 					var y1 = y.Items[columns[i]]._value;
 					var isNumX = ConvertUtil.IsNumeric(x1);
 					var isNumY = ConvertUtil.IsNumeric(y1);
+					int ret;
 					if (isNumX && isNumY)   //Numeric Compare
 					{
 						var d1 = ConvertUtil.GetValueDouble(x1);

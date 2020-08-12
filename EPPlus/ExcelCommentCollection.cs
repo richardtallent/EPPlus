@@ -213,9 +213,8 @@ namespace OfficeOpenXml {
 		/// <param name="columns">The number of columns to insert.</param>
 		internal void Delete(int fromRow, int fromCol, int rows, int columns) {
 			var deletedComments = new List<ExcelComment>();
-			ExcelAddressBase address = null;
 			foreach (ExcelComment comment in _list) {
-				address = new ExcelAddressBase(comment.Address);
+				var address = new ExcelAddressBase(comment.Address);
 				if (fromCol > 0 && address._fromCol >= fromCol) {
 					address = address.DeleteColumn(fromCol, columns);
 				}

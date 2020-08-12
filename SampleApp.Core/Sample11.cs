@@ -233,9 +233,9 @@ namespace EPPlusSamples
 
         private static void PrintListValidationDetails(ExcelWorksheet sheet, IExcelDataValidationList listValidation, int row)
         {
-            string value = string.Empty;
-            // if formula is used - show it...
-            if(!string.IsNullOrEmpty(listValidation.Formula.ExcelFormula))
+			string value;
+			// if formula is used - show it...
+			if (!string.IsNullOrEmpty(listValidation.Formula.ExcelFormula))
             {
                 value = listValidation.Formula.ExcelFormula;
             }
@@ -258,8 +258,8 @@ namespace EPPlusSamples
 
         private static void PrintTimeValidationDetails(ExcelWorksheet sheet, ExcelDataValidationTime validation, int row)
         {
-            var value1 = string.Empty;
-            if(!string.IsNullOrEmpty(validation.Formula.ExcelFormula))
+			string value1;
+			if (!string.IsNullOrEmpty(validation.Formula.ExcelFormula))
             {
                 value1 = validation.Formula.ExcelFormula;
             }

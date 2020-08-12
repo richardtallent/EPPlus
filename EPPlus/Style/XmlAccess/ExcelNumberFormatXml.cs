@@ -212,7 +212,6 @@ namespace OfficeOpenXml.Style.XmlAccess {
 				var useMinute = false;
 				var prevUnderScore = false;
 				var ignoreNext = false;
-				var fractionPos = -1;
 				var containsAmPm = ExcelFormat.Contains("AM/PM");
 				var lstDec = new List<int>();
 				var sb = new StringBuilder();
@@ -342,7 +341,7 @@ namespace OfficeOpenXml.Style.XmlAccess {
 									sb.Append(' ');
 								} else if (c == '/') {
 									if (DataType == eFormatType.Number) {
-										fractionPos = sb.Length;
+										var fractionPos = sb.Length;
 										var startPos = pos - 1;
 										while (startPos >= 0 &&
 												(ExcelFormat[startPos] == '?' ||
@@ -424,8 +423,7 @@ namespace OfficeOpenXml.Style.XmlAccess {
 
 				var fmt = FractionFormat.Split('/');
 
-				int fixedDenominator;
-				if (!int.TryParse(fmt[1], out fixedDenominator)) {
+				if (!int.TryParse(fmt[1], out var fixedDenominator)) {
 					fixedDenominator = 0;
 				}
 

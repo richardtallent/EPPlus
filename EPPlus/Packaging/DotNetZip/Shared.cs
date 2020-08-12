@@ -287,10 +287,9 @@ namespace OfficeOpenXml.Packaging.Ionic.Zip {
 			targetBytes[2] = (byte)((SignatureToFind & 0x0000FF00) >> 8);
 			targetBytes[3] = (byte)(SignatureToFind & 0x000000FF);
 			var batch = new byte[BATCH_SIZE];
-			var n = 0;
 			var success = false;
 			do {
-				n = stream.Read(batch, 0, batch.Length);
+				var n = stream.Read(batch, 0, batch.Length);
 				if (n != 0) {
 					for (var i = 0; i < n; i++) {
 						if (batch[i] == targetBytes[3]) {

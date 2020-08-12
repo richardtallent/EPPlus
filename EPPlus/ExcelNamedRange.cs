@@ -71,11 +71,7 @@ namespace OfficeOpenXml {
 		/// <summary>
 		/// Is the named range local for the sheet 
 		/// </summary>
-		public int LocalSheetId {
-			get {
-				return _sheet == null ? -1 : _sheet.PositionID - _workbook._package._worksheetAdd;
-			}
-		}
+		public int LocalSheetId => _sheet == null ? -1 : _sheet.PositionID - _workbook._package._worksheetAdd;
 		internal ExcelWorksheet LocalSheet => _sheet;
 
 		internal int Index {
@@ -102,4 +98,5 @@ namespace OfficeOpenXml {
 		internal string NameFormula { get; set; }
 		public override string ToString() => Name;
 	}
+
 }

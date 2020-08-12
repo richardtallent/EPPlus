@@ -1087,8 +1087,7 @@ namespace OfficeOpenXml.Drawing.Chart {
 				if (node == null) {
 					return eChartStyle.None;
 				} else {
-					int v;
-					return int.TryParse(node.Value, NumberStyles.Number, CultureInfo.InvariantCulture, out v) ? (eChartStyle)v : eChartStyle.None;
+					return int.TryParse(node.Value, NumberStyles.Number, CultureInfo.InvariantCulture, out var v) ? (eChartStyle)v : eChartStyle.None;
 				}
 
 			}

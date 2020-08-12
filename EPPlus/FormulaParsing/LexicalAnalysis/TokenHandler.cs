@@ -55,8 +55,7 @@ namespace OfficeOpenXml.FormulaParsing.LexicalAnalysis {
 
 		private void Handle() {
 			var c = _context.FormulaChars[_tokenIndex];
-			Token tokenSeparator;
-			if (CharIsTokenSeparator(c, out tokenSeparator)) {
+			if (CharIsTokenSeparator(c, out Token tokenSeparator)) {
 				if (TokenSeparatorHandler.Handle(c, tokenSeparator, _context, this)) {
 					return;
 				}

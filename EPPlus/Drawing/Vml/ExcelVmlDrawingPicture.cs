@@ -240,8 +240,7 @@ namespace OfficeOpenXml.Drawing.Vml {
 				var split = prop.Split(':');
 				if (split[0] == propertyName && split.Length > 1) {
 					var value = split[1].EndsWith("pt") ? split[1].Substring(0, split[1].Length - 2) : split[1];
-					double ret;
-					return double.TryParse(value, NumberStyles.Number, CultureInfo.InvariantCulture, out ret) ? ret : 0;
+					return double.TryParse(value, NumberStyles.Number, CultureInfo.InvariantCulture, out var ret) ? ret : 0;
 				}
 			}
 			return 0;

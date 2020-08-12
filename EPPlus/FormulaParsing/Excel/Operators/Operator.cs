@@ -76,8 +76,7 @@ namespace OfficeOpenXml.FormulaParsing.Excel.Operators {
 		public static IOperator Plus => _plus ?? (_plus = new Operator(Operators.Plus, PrecedenceAddSubtract, (l, r) => {
 			l = l == null || l.Result == null ? new CompileResult(0, DataType.Integer) : l;
 			r = r == null || r.Result == null ? new CompileResult(0, DataType.Integer) : r;
-			ExcelErrorValue errorVal;
-			if (EitherIsError(l, r, out errorVal)) {
+			if (EitherIsError(l, r, out ExcelErrorValue errorVal)) {
 				return new CompileResult(errorVal);
 			}
 			if (l.DataType == DataType.Integer && r.DataType == DataType.Integer) {
@@ -215,8 +214,7 @@ namespace OfficeOpenXml.FormulaParsing.Excel.Operators {
 		}
 
 		private static CompileResult Compare(CompileResult l, CompileResult r, Func<int, bool> comparison) {
-			ExcelErrorValue errorVal;
-			if (EitherIsError(l, r, out errorVal)) {
+			if (EitherIsError(l, r, out ExcelErrorValue errorVal)) {
 				return new CompileResult(errorVal);
 			}
 			object left, right;

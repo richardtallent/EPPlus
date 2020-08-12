@@ -871,8 +871,7 @@ namespace EPPlusTest
             ExcelPackage pck2 = new ExcelPackage();
             pck2.Workbook.Worksheets.Add("Copy From other pck", _pck.Workbook.Worksheets["Address"]);
             pck2.SaveAs(new FileInfo(_worksheetPath + "copy.xlsx"));
-            pck2 = null;
-            Assert.AreEqual(6, wsCopy.Comments.Count);
+			Assert.AreEqual(6, wsCopy.Comments.Count);
         }
         [Ignore]
         [TestMethod]
@@ -2522,11 +2521,9 @@ namespace EPPlusTest
 
                 if (wb != null)
                 {
-                    ExcelWorksheet ws = null;
+					ExcelWorksheet ws = wb.Worksheets[1];
 
-                    ws = wb.Worksheets[1];
-
-                    if (ws != null)
+					if (ws != null)
                     {
                         //do something with the worksheet
                         ws.Dispose();
@@ -2536,14 +2533,13 @@ namespace EPPlusTest
 
                 } //if wb != null
 
-                wb = null;
 
-                //do some other things
+				//do some other things
 
-                //running through this next line now throws the null reference exception
-                //so the inbuilt dispose method doesn't work properly.
-            } //using (ExcelPackage ep = new ExcelPackage(new FileInfo(some_file))
-        }
+				//running through this next line now throws the null reference exception
+				//so the inbuilt dispose method doesn't work properly.
+			} //using (ExcelPackage ep = new ExcelPackage(new FileInfo(some_file))
+		}
 
         [TestMethod]
         public void InsertRowsUpdatesReferencesCorrectly()

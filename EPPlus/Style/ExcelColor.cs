@@ -139,9 +139,6 @@ namespace OfficeOpenXml.Style {
 		/// <param name="theColor">The color object</param>
 		/// <returns>The RGB color starting with a #</returns>
 		public string LookupColor(ExcelColor theColor) {
-			//Thanks to neaves for contributing this method.
-			var iTint = 0;
-			var translatedRGB = "";
 
 			// reference extracted from ECMA-376, Part 4, Section 3.8.26 or 18.8.27 SE Part 1
 			string[] rgbLookup =
@@ -211,7 +208,7 @@ namespace OfficeOpenXml.Style {
 				"#FF333399",
 				"#FF333333", // 63
             };
-
+			string translatedRGB;
 			if ((0 <= theColor.Indexed) && (rgbLookup.Length > theColor.Indexed)) {
 				// coloring by pre-set color codes
 				translatedRGB = rgbLookup[theColor.Indexed];
@@ -219,8 +216,9 @@ namespace OfficeOpenXml.Style {
 				// coloring by RGB value ("FFRRGGBB")
 				translatedRGB = "#" + theColor.Rgb;
 			} else {
+				//Thanks to neaves for contributing this method.
 				// coloring by shades of grey (-1 -> 0)
-				iTint = ((int)(theColor.Tint * 160) + 0x80);
+				var iTint = ((int)(theColor.Tint * 160) + 0x80);
 				translatedRGB = ((int)(Math.Round(theColor.Tint * -512))).ToString("X");
 				translatedRGB = "#FF" + translatedRGB + translatedRGB + translatedRGB;
 			}

@@ -111,11 +111,7 @@ namespace OfficeOpenXml {
 		#endregion
 
 		#region ExcelColumn Width
-		internal double VisualWidth {
-			get {
-				return _hidden || (Collapsed && OutlineLevel > 0) ? 0 : _width;
-			}
-		}
+		internal double VisualWidth => _hidden || (Collapsed && OutlineLevel > 0) ? 0 : _width;
 		internal double _width;
 
 		/// <summary>

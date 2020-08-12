@@ -132,14 +132,12 @@ namespace OfficeOpenXml {
 			return worksheet;
 		}
 		private ExcelWorksheet AddSheet(string Name, bool isChart, eChartType? chartType, ExcelPivotTable pivotTableSource = null) {
-			int sheetID;
-			Uri uriWorksheet;
 			lock (_worksheets) {
 				Name = ValidateFixSheetName(Name);
 				if (GetByName(Name) != null) {
 					throw (new InvalidOperationException(ERR_DUP_WORKSHEET + " : " + Name));
 				}
-				GetSheetURI(ref Name, out sheetID, out uriWorksheet, isChart);
+				GetSheetURI(ref Name, out var sheetID, out Uri uriWorksheet, isChart);
 				Packaging.ZipPackagePart worksheetPart = _pck.Package.CreatePart(uriWorksheet, isChart ? CHARTSHEET_CONTENTTYPE : WORKSHEET_CONTENTTYPE, _pck.Compression);
 
 				//Create the new, empty worksheet and save it to the package
@@ -172,8 +170,6 @@ namespace OfficeOpenXml {
 		/// <param name="Copy">The worksheet to be copied</param>
 		public ExcelWorksheet Add(string Name, ExcelWorksheet Copy) {
 			lock (_worksheets) {
-				int sheetID;
-				Uri uriWorksheet;
 				if (Copy is ExcelChartsheet) {
 					throw (new ArgumentException("Can not copy a chartsheet"));
 				}
@@ -181,7 +177,7 @@ namespace OfficeOpenXml {
 					throw (new InvalidOperationException(ERR_DUP_WORKSHEET));
 				}
 
-				GetSheetURI(ref Name, out sheetID, out uriWorksheet, false);
+				GetSheetURI(ref Name, out var sheetID, out Uri uriWorksheet, false);
 
 				//Create a copy of the worksheet XML
 				Packaging.ZipPackagePart worksheetPart = _pck.Package.CreatePart(uriWorksheet, WORKSHEET_CONTENTTYPE, _pck.Compression);
@@ -799,7 +795,6 @@ namespace OfficeOpenXml {
 			if (_pck.Workbook.View.ActiveTab == worksheet.SheetID) {
 				_pck.Workbook.Worksheets[_pck._worksheetAdd].View.TabSelected = true;
 			}
-			worksheet = null;
 		}
 
 		private void DeleteRelationsAndParts(Packaging.ZipPackagePart part) {

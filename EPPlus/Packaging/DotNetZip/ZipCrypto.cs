@@ -370,7 +370,7 @@ namespace OfficeOpenXml.Packaging.Ionic.Zip {
 			// workitem 7696
 			if (count == 0) return;
 
-			byte[] plaintext = null;
+			byte[] plaintext;
 			if (offset != 0) {
 				plaintext = new byte[count];
 				for (var i = 0; i < count; i++) {

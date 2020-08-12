@@ -64,8 +64,7 @@ namespace OfficeOpenXml.FormulaParsing.ExpressionGraph {
 		private void BuildUp(Token[] tokens, Expression parent) {
 			while (_tokenIndex < tokens.Length) {
 				var token = tokens[_tokenIndex];
-				IOperator op = null;
-				if (token.TokenType == TokenType.Operator && OperatorsDict.Instance.TryGetValue(token.Value, out op)) {
+				if (token.TokenType == TokenType.Operator && OperatorsDict.Instance.TryGetValue(token.Value, out IOperator op)) {
 					SetOperatorOnExpression(parent, op);
 				} else if (token.TokenType == TokenType.Function) {
 					BuildFunctionExpression(tokens, parent, token.Value);

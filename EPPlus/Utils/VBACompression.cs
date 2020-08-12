@@ -56,7 +56,6 @@ namespace OfficeOpenXml.Utils {
 				var chunk = CompressChunk(part, ref decompStart);
 				ushort header;
 				if (chunk == null || chunk.Length == 0) {
-					header = 4096 | 0x600;  //B=011 A=0
 				} else {
 					header = (ushort)(((chunk.Length - 1) & 0xFFF));
 					header |= 0xB000;   //B=011 A=1

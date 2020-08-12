@@ -199,8 +199,7 @@ namespace OfficeOpenXml {
 		/// </summary>
 		public DateTime Created {
 			get {
-				DateTime date;
-				return DateTime.TryParse(_coreHelper.GetXmlNodeString(CreatedPath), out date) ? date : DateTime.MinValue;
+				return DateTime.TryParse(_coreHelper.GetXmlNodeString(CreatedPath), out DateTime date) ? date : DateTime.MinValue;
 			}
 			set {
 				var dateString = value.ToUniversalTime().ToString("s", CultureInfo.InvariantCulture) + "Z";
@@ -307,8 +306,7 @@ namespace OfficeOpenXml {
 		/// </summary>
 		public DateTime Modified {
 			get {
-				DateTime date;
-				return DateTime.TryParse(_coreHelper.GetXmlNodeString(ModifiedPath), out date) ? date : DateTime.MinValue;
+				return DateTime.TryParse(_coreHelper.GetXmlNodeString(ModifiedPath), out DateTime date) ? date : DateTime.MinValue;
 			}
 			set {
 				var dateString = value.ToUniversalTime().ToString("s", CultureInfo.InvariantCulture) + "Z";

@@ -15,8 +15,7 @@ namespace OfficeOpenXml.FormulaParsing.Excel.Functions.DateTime {
 		}
 
 		internal CompileResult Execute(string dateString) {
-			System.DateTime result;
-			System.DateTime.TryParse(dateString, out result);
+			System.DateTime.TryParse(dateString, out System.DateTime result);
 			return result != System.DateTime.MinValue ?
 				CreateResult(result.ToOADate(), DataType.Date) :
 				CreateResult(ExcelErrorValue.Create(eErrorType.Value), DataType.ExcelError);

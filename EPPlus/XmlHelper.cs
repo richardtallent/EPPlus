@@ -88,8 +88,6 @@ namespace OfficeOpenXml {
 				if (subNode == null || (i == subPath.Length - 1 && addNew)) {
 					string nodeName;
 					string nodePrefix;
-
-					var nameSpaceURI = "";
 					var nameSplit = subPath.Split(':');
 
 					if (SchemaNodeOrder != null && subPath[0] != '@') {
@@ -97,6 +95,8 @@ namespace OfficeOpenXml {
 						prependNode = GetPrependNode(subPath, node);
 					}
 
+
+					string nameSpaceURI;
 					if (nameSplit.Length > 1) {
 						nodePrefix = nameSplit[0];
 						if (nodePrefix[0] == '@') nodePrefix = nodePrefix.Substring(1, nodePrefix.Length - 1);
@@ -241,7 +241,6 @@ namespace OfficeOpenXml {
 			}
 
 			XmlNode node = topNode;
-			var nameSpaceURI = string.Empty;
 
 			//TODO: BUG: when the "path" contains "/" in an attrribue value, it gives an error.
 
@@ -311,7 +310,7 @@ namespace OfficeOpenXml {
 							string nodeName;
 							string nodePrefix;
 							var nameSplit = subPath.Split(':');
-							nameSpaceURI = string.Empty;
+							var nameSpaceURI = string.Empty;
 
 							// Check if the name has a prefix like "d:nodeName"
 							if (nameSplit.Length > 1) {
@@ -509,30 +508,25 @@ namespace OfficeOpenXml {
 			}
 		}
 		internal int GetXmlNodeInt(string path) {
-			int i;
-			return int.TryParse(GetXmlNodeString(path), NumberStyles.Number, CultureInfo.InvariantCulture, out i) ? i : int.MinValue;
+			return int.TryParse(GetXmlNodeString(path), NumberStyles.Number, CultureInfo.InvariantCulture, out var i) ? i : int.MinValue;
 		}
 		internal int? GetXmlNodeIntNull(string path) {
-			int i;
 			var s = GetXmlNodeString(path);
-			return s != "" && int.TryParse(s, NumberStyles.Number, CultureInfo.InvariantCulture, out i) ? i : (int?)null;
+			return s != "" && int.TryParse(s, NumberStyles.Number, CultureInfo.InvariantCulture, out var i) ? i : (int?)null;
 		}
 
 		internal decimal GetXmlNodeDecimal(string path) {
-			decimal d;
-			return decimal.TryParse(GetXmlNodeString(path), NumberStyles.Any, CultureInfo.InvariantCulture, out d) ? d : 0;
+			return decimal.TryParse(GetXmlNodeString(path), NumberStyles.Any, CultureInfo.InvariantCulture, out var d) ? d : 0;
 		}
 		internal decimal? GetXmlNodeDecimalNull(string path) {
-			decimal d;
-			return decimal.TryParse(GetXmlNodeString(path), NumberStyles.Any, CultureInfo.InvariantCulture, out d) ? d : (decimal?)null;
+			return decimal.TryParse(GetXmlNodeString(path), NumberStyles.Any, CultureInfo.InvariantCulture, out var d) ? d : (decimal?)null;
 		}
 		internal double? GetXmlNodeDoubleNull(string path) {
 			var s = GetXmlNodeString(path);
 			if (s == "") {
 				return null;
 			} else {
-				double v;
-				return double.TryParse(s, NumberStyles.Any, CultureInfo.InvariantCulture, out v) ? v : (double?)null;
+				return double.TryParse(s, NumberStyles.Any, CultureInfo.InvariantCulture, out var v) ? v : (double?)null;
 			}
 		}
 		internal double GetXmlNodeDouble(string path) {
@@ -540,8 +534,7 @@ namespace OfficeOpenXml {
 			if (s == "") {
 				return double.NaN;
 			} else {
-				double v;
-				return double.TryParse(s, NumberStyles.Any, CultureInfo.InvariantCulture, out v) ? v : double.NaN;
+				return double.TryParse(s, NumberStyles.Any, CultureInfo.InvariantCulture, out var v) ? v : double.NaN;
 			}
 		}
 

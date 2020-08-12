@@ -64,7 +64,7 @@ namespace OfficeOpenXml.DataValidation.Formulas {
 			}
 		}
 
-		internal override void ResetValue() => Value = default(T);
+		internal override void ResetValue() => Value = default;
 
 	}
 }

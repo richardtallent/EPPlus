@@ -578,8 +578,8 @@ namespace OfficeOpenXml {
 			}
 		}
 		private void CreateBlankWb() {
-			XmlDocument workbook = Workbook.WorkbookXml; // this will create the workbook xml in the package
-														 // create the relationship to the main part
+			_ = Workbook.WorkbookXml; // this will create the workbook xml in the package
+									  // create the relationship to the main part
 			_package.CreateRelationship(UriHelper.GetRelativeUri(new Uri("/xl", UriKind.Relative), Workbook.WorkbookUri), Packaging.TargetMode.Internal, schemaRelationships + "/officeDocument");
 		}
 
@@ -734,7 +734,7 @@ namespace OfficeOpenXml {
 		public void Save() {
 			try {
 				if (_stream is MemoryStream && _stream.Length > 0) {
-					//Close any open memorystream and "renew" then. This can occure if the package is saved twice. 
+					//Close any open memorystream and "renew" them. This can occur if the package is saved twice. 
 					//The stream is left open on save to enable the user to read the stream-property.
 					//Non-memorystream streams will leave the closing to the user before saving a second time.
 					CloseStream();
@@ -765,17 +765,17 @@ namespace OfficeOpenXml {
 
 					_package.Save(_stream);
 					_package.Close();
-					if (Stream is MemoryStream) {
+					if (Stream is MemoryStream stream) {
 						var fi = new FileStream(File.FullName, FileMode.Create);
 						//EncryptPackage
 						if (Encryption.IsEncrypted) {
-							var file = ((MemoryStream)Stream).ToArray();
+							var file = stream.ToArray();
 							var eph = new EncryptedPackageHandler();
 							var ms = eph.EncryptPackage(file, Encryption);
 
 							fi.Write(ms.ToArray(), 0, (int)ms.Length);
 						} else {
-							fi.Write(((MemoryStream)Stream).ToArray(), 0, (int)Stream.Length);
+							fi.Write(stream.ToArray(), 0, (int)Stream.Length);
 						}
 						fi.Close();
 						fi.Dispose();

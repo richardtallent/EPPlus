@@ -665,7 +665,7 @@ namespace OfficeOpenXml {
 
 			// save all the open worksheets
 			var isProtected = Protection.LockWindows || Protection.LockStructure;
-			foreach (ExcelWorksheet worksheet in Worksheets) {
+			foreach (var worksheet in Worksheets) {
 				if (isProtected && Protection.LockWindows) {
 					worksheet.View.WindowProtection = true;
 				}
